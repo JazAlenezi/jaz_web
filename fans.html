@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FANS | JAZ</title>
+    <link rel="icon" type="image/png" href="jaz1.jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --main-bg: #fdfbf9; 
+            --deep-mocha: #4B3621; 
+            --caramel-linear: linear-gradient(135deg, #C68E17 0%, #E3A857 50%, #7B3F00 100%);
+            --text-honey: #C68E17;
+            --soft-gold: rgba(198, 142, 23, 0.1);
+        }
+
+        body { 
+            font-family: 'Cairo', sans-serif; 
+            background-color: var(--main-bg); 
+            color: var(--deep-mocha); 
+            margin: 0; 
+            display: flex; flex-direction: column; align-items: center; 
+            min-height: 100vh; position: relative; 
+            overflow-x: hidden;
+        }
+
+        body::after {
+            content: ""; position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+            width: 100%; height: 500px;
+            background: radial-gradient(circle at top, rgba(198, 142, 23, 0.08) 0%, transparent 70%);
+            pointer-events: none; z-index: 1;
+        }
+
+        .watermark {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 12rem; font-weight: 900; color: var(--deep-mocha);
+            opacity: 0.02; z-index: 0; pointer-events: none; user-select: none;
+        }
+
+        .nav-links { 
+            position: relative; top: 20px; display: flex; gap: 10px; 
+            z-index: 10; flex-wrap: wrap; justify-content: center; width: 100%; margin-bottom: 50px;
+        }
+        .nav-links a { color: var(--deep-mocha); text-decoration: none; opacity: 0.7; transition: 0.3s; font-weight: bold; font-size: 0.75rem; }
+        .nav-links a:hover { opacity: 1; color: var(--text-honey); }
+
+        .content { z-index: 10; padding: 20px; width: 90%; max-width: 500px; text-align: center; }
+
+        .page-title { 
+            background: var(--caramel-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+            font-size: 2.2rem; margin-bottom: 30px; font-weight: 700;
+        }
+        
+        .write-box { 
+            background: white; border: 1px solid var(--soft-gold); padding: 30px; 
+            margin: 20px 0; border-radius: 20px; box-shadow: 0 10px 30px rgba(75, 54, 33, 0.05);
+            transition: 0.4s; position: relative; z-index: 10;
+        }
+
+        .fan-form { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+
+        .input-field {
+            background: #fdfdfd; border: 1px solid rgba(198, 142, 23, 0.2);
+            border-radius: 10px; padding: 15px; color: var(--deep-mocha);
+            font-family: 'Cairo'; font-size: 0.9rem; outline: none; transition: 0.3s;
+        }
+
+        .send-btn { 
+            background: var(--caramel-linear); color: white; padding: 15px; 
+            border-radius: 50px; font-weight: bold; border: none; cursor: pointer;
+            margin-top: 10px; font-size: 1rem; transition: 0.4s; font-family: 'Cairo';
+            box-shadow: 0 4px 15px rgba(198, 142, 23, 0.3);
+        }
+
+        .wall { display: flex; flex-direction: column; gap: 20px; margin-top: 40px; z-index: 10; width: 100%; }
+
+        .fan-card { 
+            background: white; padding: 20px; border-radius: 15px; 
+            border-right: 5px solid var(--text-honey); text-align: right; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03); animation: fadeIn 0.5s ease-in;
+            margin-bottom: 10px;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .fan-card p { margin-bottom: 10px; font-size: 0.95rem; line-height: 1.7; }
+        .fan-card b { color: var(--text-honey); font-size: 0.8rem; }
+
+        footer {
+            margin-top: auto; padding: 20px; font-size: 0.7rem;
+            opacity: 0.7; z-index: 10; color: var(--deep-mocha); text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="watermark">FANS</div>
+
+    <nav class="nav-links">
+        <a href="index.html">الرئيسية</a>
+
+        <a href="fans.html" style="color: var(--text-honey);">من القلب</a>
+    </nav>
+
+    <div class="content">
+        <h1 class="page-title"></h1>
+        
+        <div class="write-box">
+            <p style="font-size: 1.1rem; font-weight: bold; margin-bottom: 5px;">اتركي بصمتك في يوم ميلادها ✨</p>
+            <p style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 20px;">رسالتك ستظهر هنا وسوف تراها جاز..</p>
+            
+            <div class="fan-form">
+                <input type="text" id="fanName" class="input-field" placeholder="اسمكِ.." required>
+                <textarea id="fanMsg" class="input-field" rows="4" placeholder="اكتبي تهنئتكِ هنا بحب.." required></textarea>
+                <button type="button" onclick="saveMessage()" class="send-btn">إرسال بصمتي ✨</button>
+            </div>
+        </div>
+
+        <div class="wall" id="messagesWall">
+            <h2 style="font-size: 1.2rem; color: var(--deep-mocha); margin-bottom: 15px; font-weight: 700;">رسائل من القلب ❤️</h2>
+        </div>
+    </div>
+
+   <footer>جميع الحقوق محفوظة لـ JAZ 2026 © | تم التطوير بواسطة <a href="https://www.tiktok.com/@shx_ab1" target="_blank" style="color: var(--text-honey); text-decoration: none; font-weight: bold;">SHOUQ🤎🇸🇦</a></footer>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+    <script>
+        // سيتم استبدال هذه البيانات بعد فتح الحساب
+       const firebaseConfig = {
+            apiKey: "AIzaSyA17avzlohOby3GJAukQzbiRixmK9HX_s",
+            authDomain: "jaz-fans.firebaseapp.com",
+            databaseURL: "https://jaz-fans-default-rtdb.firebaseio.com",
+            projectId: "jaz-fans",
+            storageBucket: "jaz-fans.firebasestorage.app",
+            messagingSenderId: "589988632803",
+            appId: "1:589988632803:web:2a5c89b32c314ff3260dd6",
+            measurementId: "G-5W2RJXS0ZN"
+        };
+        
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        function saveMessage() {
+            const name = document.getElementById('fanName').value;
+            const message = document.getElementById('fanMsg').value;
+            
+            // قائمة الكلمات المرفوضة - يمكنك إضافة المزيد هنا
+            const badWords = ["تسب", "غبي", "سيء"]; 
+            
+            const hasBadWord = badWords.some(word => message.includes(word) || name.includes(word));
+
+            if(hasBadWord) {
+                alert("لطفاً، اجعلي رسالتكِ مليئة بالحب والإيجابية لتليق بجاز 🤎");
+                return; 
+            }
+
+            if(name && message) {
+                const newMessageRef = database.ref('messages').push();
+                newMessageRef.set({
+                    username: name,
+                    text: message,
+                    timestamp: Date.now()
+                });
+                document.getElementById('fanName').value = '';
+                document.getElementById('fanMsg').value = '';
+                alert("تم إرسال رسالتكِ بنجاح ✨");
+            } else {
+                alert("لطفاً اكتبي اسمك ورسالتك 🤎");
+            }
+        }
+
+        database.ref('messages').on('child_added', (snapshot) => {
+            const data = snapshot.val();
+            const wall = document.getElementById('messagesWall');
+            const card = `
+                <div class="fan-card">
+                    <p>"${data.text}"</p>
+                    <b>- ${data.username}</b>
+                </div>
+            `;
+            wall.insertAdjacentHTML('afterbegin', card);
+        });
+    </script>
+</body>
+</html>

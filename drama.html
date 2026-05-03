@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRAMA | JAZ</title>
+    <link rel="icon" type="image/png" href="jaz1.jpeg"> 
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-bg: #fdfbf9; 
+            --deep-mocha: #4B3621; 
+            --caramel-linear: linear-gradient(135deg, #C68E17 0%, #E3A857 50%, #7B3F00 100%);
+            --text-honey: #C68E17;
+            --soft-gold: rgba(198, 142, 23, 0.1);
+            
+            /* لون الخلفية الرمادي لزر الرجوع */
+            --back-btn-bg: #f2f2f2; 
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--main-bg);
+            color: var(--deep-mocha); 
+            margin: 0;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+            min-height: 100vh; 
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: scroll; 
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 100%; height: 500px;
+            background: radial-gradient(circle at top, rgba(198, 142, 23, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .watermark {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 10rem;
+            font-weight: 900;
+            color: var(--deep-mocha);
+            opacity: 0.02;
+            z-index: 0;
+            pointer-events: none;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        /* --- تعديل تنسيق شريط التنقل لتوزيع العناصر --- */
+        .nav-links { 
+            position: relative; 
+            top: 20px; 
+            display: flex; 
+            justify-content: center; /* توسيع المحتوى عموماً */
+            align-items: center; 
+            width: 100%;
+            margin-bottom: 50px; 
+            padding: 0 30px; /* تباعد جانبي */
+            box-sizing: border-box;
+            z-index: 100; /* رفع الـ z-index */
+        }
+        
+        /* تنسيق الروابط النصية (لتكون في المنتصف) */
+        .nav-text-links {
+            display: flex;
+            gap: 15px;
+            position: absolute; /* استخدام التموضع المطلق للتوسيط */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .nav-text-links a { 
+            color: var(--text-honey); /* تغيير اللون للون العسل مباشرة */
+            text-decoration: none; 
+            transition: 0.3s; 
+            font-weight: bold; 
+            font-size: 0.85rem; /* تكبير بسيط */
+        }
+
+        /* --- تنسيقات زر الرجوع (Back Button) الجديدة والتموضع الأيمن --- */
+        .back-btn {
+            background-color: var(--back-btn-bg);
+            color: var(--deep-mocha);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.75rem;
+            padding: 6px 15px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            
+            /* تموضع الزر في أقصى اليمين */
+            position: absolute;
+            right: 30px; 
+        }
+        .back-btn:hover {
+            background-color: #e6e6e6;
+            transform: scale(1.03); /* تكبير بسيط بدل الحركة */
+        }
+        .back-icon {
+            font-size: 0.9rem;
+        }
+        /* ------------------------------------------- */
+
+        .content-wrapper { 
+            z-index: 10; 
+            padding: 20px; 
+            width: 90%; 
+            max-width: 800px; 
+            text-align: center; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px; /* إضافة مسافة لأسفل */
+        }
+
+        .header-section { margin-bottom: 30px; }
+
+        .grid { 
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 20px; 
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .card { 
+            background: white;
+            border: 1px solid var(--soft-gold); 
+            padding: 10px; 
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 10px 25px rgba(75, 54, 33, 0.05);
+            transition: 0.4s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(198, 142, 23, 0.12);
+            border-color: var(--text-honey);
+        }
+
+        .year-tag {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            background: var(--caramel-linear);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            z-index: 11;
+        }
+
+        .inner-img-box { 
+            width: 100%; 
+            height: 240px; 
+            overflow: hidden; 
+            border-radius: 8px;
+            margin-bottom: 15px;
+            background: #f9f9f9;
+        }
+        
+        .inner-img-box img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+        }
+        
+        .card h3 { 
+            color: var(--deep-mocha); 
+            margin: 5px 0 10px 0; 
+            font-size: 0.95rem; 
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 40px 20px;
+            font-size: 0.7rem;
+            opacity: 0.6;
+            z-index: 10;
+            color: var(--deep-mocha);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="watermark">DRAMA</div>
+
+    <nav class="nav-links">
+        <a href="index.html" class="back-btn">
+            رجوع
+            <span class="back-icon">→</span>
+        </a>
+
+        <div class="nav-text-links">
+            <a href="drama.html">الدراما</a>
+        </div>
+    </nav>
+
+    <div class="content-wrapper">
+        <div class="header-section">
+            <p style="font-weight: bold; opacity: 0.8;">بصمة درامية في ذاكرة الشاشة الخليجية</p>
+        </div>
+        
+        <div class="grid">
+            <div class="card">
+                <div class="year-tag">2026</div>
+                <div class="inner-img-box"><img src="ام رجا.jpeg" alt="مسلسل ام رجا"></div>
+                <h3>مسلسل ام رجا</h3> 
+            </div>
+
+            <div class="card">
+                <div class="year-tag">2026</div>
+                <div class="inner-img-box"><img src="بنات عبدالغني.jpeg" alt="مسلسل بنات عبدالغني"></div>
+                <h3>بنات عبدالغني</h3>
+            </div>
+
+            <div class="card">
+                <div class="year-tag">2024</div>
+                <div class="inner-img-box"><img src="صدف.jpeg" alt="مسلسل صدف"></div>
+                <h3>مسلسل صدف</h3>
+            </div>
+
+            <div class="card">
+                <div class="year-tag">2024</div>
+                <div class="inner-img-box"><img src="الفرج بعد الشده.jpeg" alt="مسلسل الفرج بعد الشدة"></div>
+                <h3>الفرج بعد الشده</h3>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        جميع الحقوق محفوظة لـ JAZ 2026 ©️ | تم التطوير بواسطة 
+        <a href="https://www.tiktok.com/@shx_ab1" target="_blank" style="color: var(--text-honey); text-decoration: none; font-weight: bold;">SHOUQ🤎🇸🇦</a>
+    </footer>
+</body>
+</html>

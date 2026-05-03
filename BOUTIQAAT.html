@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAZ | BOUTIQAAT</title>
+    <link rel="icon" type="image/png" href="jaz1.jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-bg: #fdfbf9; 
+            --deep-mocha: #4B3621; 
+            --caramel-linear: linear-gradient(135deg, #C68E17 0%, #E3A857 50%, #7B3F00 100%);
+            --text-honey: #C68E17;
+            --soft-gold: rgba(198, 142, 23, 0.1);
+            --side-box-bg: rgba(0, 0, 0, 0.85); 
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--main-bg); 
+            color: var(--deep-mocha); 
+            margin: 0;
+            display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+            min-height: 100vh; overflow-x: hidden;
+            position: relative;
+            padding-bottom: 50px;
+        }
+
+        .nav-links { 
+            position: relative; 
+            top: 20px; 
+            display: flex; 
+            gap: 15px; 
+            z-index: 10; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            width: 100%; 
+            margin-bottom: 40px; 
+        }
+        .nav-links a { 
+            color: var(--deep-mocha); 
+            text-decoration: none; 
+            opacity: 0.7; 
+            transition: 0.3s; 
+            font-weight: bold; 
+            font-size: 0.8rem; 
+        }
+        .nav-links a:hover { opacity: 1; color: var(--text-honey); }
+
+        .header-section { 
+            z-index: 10; 
+            text-align: center; 
+            margin-top: 30px; 
+        }
+        .header-section h1 { 
+            font-size: 2.2rem; 
+            background: var(--caramel-linear); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            font-weight: 700; 
+            margin: 0; 
+        }
+        .system-status { 
+            z-index: 10; 
+            color: var(--deep-mocha); 
+            font-size: 0.85rem; 
+            margin-top: 10px; 
+            margin-bottom: 25px; 
+            text-align: center; 
+            opacity: 0.8; 
+            font-weight: bold; 
+        }
+
+        .main-grid { 
+            z-index: 10; 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 25px; 
+            width: 90%; 
+            max-width: 1000px; 
+            margin: 20px 0; 
+        }
+        .category-card { 
+            background: white; 
+            border: 1px solid var(--soft-gold); 
+            padding: 15px; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(75, 54, 33, 0.05); 
+            text-align: center; 
+            text-decoration: none; 
+            color: inherit; 
+            transition: 0.4s; 
+            display: block;
+        }
+        .category-card:hover { 
+            transform: translateY(-8px); 
+            border-color: var(--text-honey); 
+        }
+
+        .category-card img { 
+            width: 100%; 
+            height: 250px; 
+            object-fit: cover; 
+            border-radius: 10px; 
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .category-card h3 { 
+            color: var(--deep-mocha); 
+            margin: 10px 0; 
+            font-size: 1.2rem; 
+            font-weight: 700;
+        }
+        .btn-go { 
+            display: inline-block; 
+            background: var(--caramel-linear); 
+            color: white; 
+            padding: 10px 25px; 
+            border-radius: 50px; 
+            font-weight: bold; 
+            font-size: 0.85rem;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .fans-message-trigger {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            background-color: var(--side-box-bg);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid var(--text-honey);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: 0.3s;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .fans-message-trigger:hover {
+            transform: scale(1.05);
+            background-color: var(--deep-mocha);
+        }
+        .heart-icon { color: var(--text-honey); font-size: 1.1rem; }
+
+        footer { 
+            margin-top: auto; 
+            padding: 30px; 
+            font-size: 0.7rem; 
+            opacity: 0.5; 
+            z-index: 10; 
+            color: var(--deep-mocha); 
+            font-weight: bold; 
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-links">
+        <a href="index.html">الرئيسية</a>
+        <a href="drama.html">أعمالي</a>
+        <a href="BOUTIQAAT.html" style="color: var(--text-honey);">مختارات جاز</a>
+        <a href="business.html">تواصل</a>
+    </nav>
+
+    <div class="header-section">
+        <h1 class="page-title"> </h1>
+        <div class="system-status">مختارات حصرية من أفضل منتجات   ✨</div>
+    </div>
+
+    <div class="main-grid">
+        <a href="makeup.html" class="category-card">
+            <img src="ميكاب.jpeg" alt="مكياج">
+            <h3>ركن المكياج</h3>
+            <span class="btn-go">تصفح المجموعة 💄</span>
+        </a>
+
+                <a href="skincare.html" class="category-card">
+            <!-- تم تعديل النسبة هنا لإظهار الوجه بشكل صحيح -->
+            <img src="عناية.jpeg" alt="قسم العناية" style="object-position: 50% 30%;">
+            <h3>قسم العناية</h3>
+            <span class="btn-go">تصفح المجموعة ✨</span>
+        </a>
+        
+        <a href="perfumes.html" class="category-card">
+            <img src="عطور.jpeg" alt="عطور">
+            <h3>عطور جاز</h3>
+            <span class="btn-go">تصفح المجموعة 🪵</span>
+        </a>
+
+
+    </div>
+
+   
+
+    <footer>جميع الحقوق محفوظة لـ JAZ 2026 ©️ | تم التطوير بواسطة <a href="https://www.tiktok.com/@shx_ab1" target="_blank" style="color: var(--text-honey); text-decoration: none; font-weight: bold;">SHOUQ🤎🇸🇦</a></footer>
+
+</body>
+</html>

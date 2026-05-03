@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAZ | SKINCARE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-bg: #fdfbf9; --deep-mocha: #4B3621; 
+            --caramel-linear: linear-gradient(135deg, #C68E17 0%, #E3A857 50%, #7B3F00 100%);
+            --text-honey: #C68E17; --soft-gold: rgba(198, 142, 23, 0.1);
+        }
+        body {
+            font-family: 'Cairo', sans-serif; background-color: var(--main-bg); color: var(--deep-mocha);
+            margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; overflow-x: hidden; position: relative;
+            padding-bottom: 50px;
+        }
+
+        /* زر الرجوع الناعم */
+        .back-mini {
+            position: fixed; top: 15px; right: 15px;
+            text-decoration: none; color: var(--deep-mocha);
+            font-size: 0.75rem; font-weight: bold; z-index: 10000;
+            background: white; padding: 6px 15px; border-radius: 50px;
+            border: 1px solid var(--soft-gold); box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: 0.3s; opacity: 0.9;
+        }
+        .back-mini:hover { opacity: 1; transform: scale(1.05); color: var(--text-honey); }
+
+        /* التأثيرات الخلفية */
+        body::after { content: ""; position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 100%; height: 500px; background: radial-gradient(circle at top, rgba(198, 142, 23, 0.08) 0%, transparent 70%); pointer-events: none; z-index: 1; }
+        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('https://www.transparenttextures.com/patterns/stardust.png'); opacity: 0.05; z-index: 0; pointer-events: none; }
+        .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 10rem; font-weight: 900; color: var(--deep-mocha); opacity: 0.02; z-index: 0; pointer-events: none; }
+
+        /* القائمة */
+        .nav-links { position: relative; top: 20px; display: flex; gap: 15px; z-index: 10; justify-content: center; width: 100%; margin-bottom: 40px; }
+        .nav-links a { color: var(--deep-mocha); text-decoration: none; opacity: 0.7; font-weight: bold; font-size: 0.85rem; }
+        .nav-links a:hover { color: var(--text-honey); opacity: 1; }
+
+        .header-title { z-index: 10; margin-top: 30px; text-align: center; }
+        .header-title h1 { background: var(--caramel-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.2rem; margin: 0; }
+
+        /* شبكة العرض - عمودين متساويين */
+        .product-container { 
+            z-index: 10; 
+            width: 95%; 
+            max-width: 800px; 
+            margin: 30px 0; 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
+        }
+
+        /* البطاقة */
+        .product-card { 
+            background: white; 
+            border-radius: 20px; 
+            padding: 10px; 
+            border: 1px solid var(--soft-gold); 
+            text-align: center; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02); 
+            transition: 0.3s;
+        }
+        .product-card:hover { transform: scale(1.02); border-color: var(--text-honey); }
+
+        /* الصورة الطولية */
+        .product-img { 
+            width: 100%; 
+            height: 280px; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            margin-bottom: 10px; 
+            background-color: #f9f9f9;
+        }
+        .product-img img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+        }
+
+        .product-title { 
+            font-size: 0.95rem; 
+            font-weight: bold; 
+            margin: 8px 0; 
+            color: var(--deep-mocha);
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .buy-btn { 
+            display: block; 
+            background: var(--caramel-linear); 
+            color: white; 
+            padding: 10px; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            font-size: 0.75rem;
+            margin-top: 5px;
+            box-shadow: 0 4px 10px rgba(198,142,23,0.15);
+        }
+
+        @media (max-width: 500px) {
+            .product-img { height: 220px; }
+        }
+
+        footer { margin-top: auto; padding: 30px; font-size: 0.7rem; opacity: 0.5; z-index: 10; color: var(--deep-mocha); font-weight: bold; text-align: center; }
+    </style>
+</head>
+<body>
+    <!-- زر الرجوع -->
+    <a href="BOUTIQAAT.html" class="back-mini">رجوع →</a>
+
+    <div class="watermark">SKINCARE</div>
+    
+    <nav class="nav-links">
+        <a href="index.html">الرئيسية</a>
+        <a href="drama.html">أعمالي</a>
+        <a href="BOUTIQAAT.html" style="color: var(--text-honey);">مختارات جاز</a>
+        <a href="business.html">تواصل</a>
+    </nav>
+
+    <div class="header-title">
+        <h1> </h1>
+        <p style="font-weight: bold; opacity: 0.7; font-size: 0.9rem;">أسرار جمالك مع جاز ✨</p>
+    </div>
+
+    <div class="product-container">
+        <!-- المنتج الأول -->
+        <div class="product-card">
+            <div class="product-img">
+                <img src="اوردينالي.jpeg" alt="">
+            </div>
+            <div class="product-title">  مجموعة ذا موست لوفد</div>
+            <a href="https://www.boutiqaat.com/ar-sa/women/softie-skin-set-2-pcs-1/p/cid/12388/" class="buy-btn">اطلبي عبر بوتيكات</a>
+        </div>
+
+        <!-- المنتج الثاني -->
+        <div class="product-card">
+            <div class="product-img">
+                <img src="كيلز.jpeg" alt="">
+            </div>
+            <div class="product-title"> مجموعة معالج العين الكريمي بخلاصة الافوكادو</div>
+            <a href="https://www.boutiqaat.com/ar-sa/women/creamy-eye-cream-duo-2-pcs-1/p/cid/12388/" class="buy-btn">اطلبي عبر بوتيكات</a>
+        </div>
+           
+         <div class="product-card">
+            <div class="product-img">
+                <img src="غسول الحلزون من كوسركس.jpeg" alt="">
+            </div>
+            <div class="product-title">  قريبااااا</div>
+            <a href="" class="buy-btn">اطلبي عبر بوتيكات</a>
+        </div>
+            
+         <div class="product-card">
+            <div class="product-img">
+                <img src="غسول الحلزون من كوسركس.jpeg" alt="">
+            </div>
+            <div class="product-title">  قريبااااا</div>
+            <a href="" class="buy-btn">اطلبي عبر بوتيكات</a>
+        </div>
+    </div>
+
+    <footer>جميع الحقوق محفوظة لـ JAZ 2026 ©️ | تم التطوير بواسطة <a href="https://www.tiktok.com/@shx_ab1" target="_blank" style="color: var(--text-honey); text-decoration: none; font-weight: bold;">SHOUQ🤎🇸🇦</a></footer>
+</body>
+</html>

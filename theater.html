@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THEATER | JAZ</title>
+    <link rel="icon" type="image/png" href="jaz1.jpeg"> <!-- إضافة أيقونة الموقع -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-bg: #fdfbf9; 
+            --deep-mocha: #4B3621; 
+            --caramel-linear: linear-gradient(135deg, #C68E17 0%, #E3A857 50%, #7B3F00 100%);
+            --text-honey: #C68E17;
+            --soft-gold: rgba(198, 142, 23, 0.1);
+            
+            /* لون الخلفية الرمادي لزر الرجوع من الصورة image_7.png */
+            --back-btn-bg: #f2f2f2; 
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--main-bg);
+            color: var(--deep-mocha); 
+            margin: 0;
+            display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh; position: relative; overflow-x: hidden;
+        }
+
+        /* 1. تأثير الإضاءة المسلطة في الخلفية */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 100%; height: 500px;
+            background: radial-gradient(circle at top, rgba(198, 142, 23, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        body::before {
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.05; z-index: 0; pointer-events: none;
+        }
+
+        /* 2. نص خلفية فني (Watermark) */
+        .watermark {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 15rem;
+            font-weight: 900;
+            color: var(--deep-mocha);
+            opacity: 0.02;
+            z-index: 0;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* --- شريط التنقل المحدث لضمان التوسيط وزر الرجوع على اليمين --- */
+        .nav-links { 
+            position: relative; 
+            top: 20px; 
+            display: flex; 
+            justify-content: center; /* لتوسيع المحتوى عموماً */
+            align-items: center; 
+            width: 100%;
+            margin-bottom: 50px;
+            padding: 0 30px; /* تباعد جانبي */
+            box-sizing: border-box;
+            z-index: 100; /* رفع الـ z-index */
+        }
+        
+        /* تنسيق الروابط النصية (لتكون في المنتصف) */
+        .nav-text-links {
+            display: flex;
+            gap: 15px;
+            position: absolute; /* استخدام التموضع المطلق للتوسيط */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .nav-text-links a { 
+            color: var(--text-honey); /* تغيير اللون للون العسل مباشرة */
+            text-decoration: none; 
+            transition: 0.3s; 
+            font-weight: bold; 
+            font-size: 0.85rem; 
+        }
+
+        /* --- تنسيقات زر الرجوع (Back Button) الجديدة لليمين --- */
+        .back-btn {
+            background-color: var(--back-btn-bg);
+            color: var(--deep-mocha);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.75rem;
+            padding: 6px 15px;
+            border-radius: 50px; /* حواف منحنية تماماً */
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            
+            /* تموضع الزر في أقصى اليمين */
+            position: absolute;
+            right: 30px; 
+        }
+        .back-btn:hover {
+            background-color: #e6e6e6; /* تغميق بسيط عند التمرير */
+            transform: scale(1.03); /* تكبير بسيط بدل الحركة */
+        }
+        .back-icon {
+            font-size: 0.9rem;
+        }
+        /* ------------------------------------------- */
+
+        .content { 
+            z-index: 10; 
+            padding: 20px; 
+            width: 95%; 
+            max-width: 500px; 
+            text-align: center; 
+            margin-top: 20px; /* إضافة مسافة لأسفل بعد الناف بار الجديد */
+        }
+        
+        .subtitle { color: var(--deep-mocha); font-size: 0.9rem; margin-bottom: 40px; opacity: 0.7; font-weight: bold; }
+
+        .theater-grid { 
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px; 
+        }
+
+        .theater-card {
+            background: white;
+            border: 1px solid var(--soft-gold);
+            padding: 12px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 10px 25px rgba(75, 54, 33, 0.05);
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        /* 3. تأثير التوهج والحركة عند تمرير الماوس */
+        .theater-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(198, 142, 23, 0.15);
+            border-color: var(--text-honey);
+        }
+
+        .image-container {
+            width: 100%;
+            height: 250px; 
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            background: #f9f9f9;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-info h3 { 
+            color: var(--deep-mocha); 
+            font-size: 0.95rem; 
+            margin: 5px 0 12px 0;
+            font-weight: bold;
+        }
+
+        .booking-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--caramel-linear);
+            color: white;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: 0.4s;
+            box-shadow: 0 4px 15px rgba(198, 142, 23, 0.2);
+        }
+
+        .booking-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(198, 142, 23, 0.3);
+        }
+
+        .year-tag {
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            background: var(--caramel-linear);
+            color: white;
+            font-size: 0.75rem;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            z-index: 11;
+        }
+
+        /* 4. تذييل الصفحة */
+        footer {
+            margin-top: auto;
+            padding: 30px;
+            font-size: 0.7rem;
+            opacity: 0.5;
+            z-index: 10;
+            color: var(--deep-mocha);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="watermark">STAGE</div>
+
+    <!-- شريط التنقل المحدث لضمان التوسيط وزر الرجوع على اليمين -->
+    <nav class="nav-links">
+        <!-- زر الرجوع على اليمين تماماً بنفس تنسيق الصورة image_7.png -->
+        <a href="index.html" class="back-btn">
+            رجوع
+            <span class="back-icon">→</span>
+        </a>
+
+        <!-- كلمة المسرح في المنتصف تماماً -->
+        <div class="nav-text-links">
+            <a href="theater.html">المسرح</a>
+        </div>
+    </nav>
+
+    <div class="content">
+        
+        <p class="subtitle">حيث تلتقي الأضواء بالشغف على المسرح ✨</p>
+
+        <div class="theater-grid">
+            <div class="theater-card">
+                <div class="year-tag">2026</div>
+                <div class="image-container">
+                    <img src="شوقر دادي.jpeg" alt="شوقر دادي">
+                </div>
+                <div class="play-info">
+                    <h3>مسرحية شوقر دادي</h3>
+                    <a href="https://www.eventat.com/sugar-daddy" class="booking-btn">احجز مقعدك الآن</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<footer>جميع الحقوق محفوظة لـ JAZ 2026 ©️ | تم التطوير بواسطة <a href="https://www.tiktok.com/@shx_ab1" target="_blank" style="color: var(--text-honey); text-decoration: none; font-weight: bold;">SHOUQ🤎🇸🇦</a></footer>
+</body>
+</html>
