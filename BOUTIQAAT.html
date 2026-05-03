@@ -13,7 +13,6 @@
             --caramel-linear: linear-gradient(135deg, #C68E17 0%, #E3A857 50%, #7B3F00 100%);
             --text-honey: #C68E17;
             --soft-gold: rgba(198, 142, 23, 0.1);
-            --side-box-bg: rgba(0, 0, 0, 0.85); 
         }
 
         body {
@@ -24,43 +23,36 @@
             display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
             min-height: 100vh; overflow-x: hidden;
             position: relative;
-            /* تمت إعادة الهامش القديم ليتناسب مع القائمة الجديدة غير الثابتة */
-            padding-top: 20px;
             padding-bottom: 50px;
         }
 
-        /* --- تنسيقات القائمة القديمة والأنيقة المحدثة بالـ Dropdown --- */
-        
-        /* الحاوية الرئيسية للقائمة لتكون في المنتصف */
-        .nav-container {
-            position: relative; 
-            z-index: 1000; /* لضمان ظهور القائمة المنسدلة فوق المحتوى */
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            margin-bottom: 40px; /* المسافة تحت القائمة */
-        }
-
+        /* --- تنسيقات القائمة العلوية من صفحة index.html (بحجم خط 0.8rem) --- */
         .nav-links { 
+            position: relative; 
+            top: 20px; 
             display: flex; 
-            gap: 15px; /* المسافة الدقيقة بين الروابط */
+            gap: 15px; /* المسافة الدقيقة من index */
+            z-index: 1000; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            width: 100%; 
+            margin-bottom: 40px; 
             padding: 0;
-            margin: 0;
             list-style: none;
         }
 
-        .nav-links > li {
-            position: relative; /* ضروري لتموضع القائمة المنسدلة */
+        .nav-links li {
+            position: relative;
         }
 
-        .nav-links > li > a,
+        .nav-links li a,
         .dropdown-trigger { 
             color: var(--deep-mocha); 
             text-decoration: none; 
-            opacity: 0.7; /* الشفافية الأصلية الهادئة */
+            opacity: 0.7; 
             transition: 0.3s; 
             font-weight: bold; 
-            font-size: 0.8rem; /* حجم الخط الصغير والأنيق الأصلي */
+            font-size: 0.8rem; /* الحجم الصغير الدقيق */
             cursor: pointer;
             background: none;
             border: none;
@@ -68,28 +60,29 @@
             font-family: 'Cairo', sans-serif;
         }
 
-        /* تأثيرات التحويم والصفحة النشطة */
-        .nav-links > li > a:hover,
+        .nav-links li a:hover,
         .dropdown:hover .dropdown-trigger,
-        .nav-links > li > a.active { 
+        .nav-links li a.active { 
             opacity: 1; 
-            color: var(--text-honey); /* يتحول للذهبي الهادئ */
+            color: var(--text-honey); 
         }
 
-        /* تنسيقات القائمة المنسدلة الجديدة */
+        /* --- الحل: تنسيقات القائمة المنسدلة النظيفة مثل index --- */
         .dropdown-content {
-            display: none; /* مخفية */
+            display: none; 
             position: absolute;
-            top: 100%; /* تظهر مباشرة تحت "أعمالي" */
-            right: 0; /* محاذاة لليمين */
+            top: 100%; 
+            right: 0;
+            /* تم استبدال الشفافية بخلفية بيضاء صلبة ونظيفة */
             background-color: white; 
             min-width: 120px;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+            /* تم إخفاء الحدود العريضة والاكتفاء بظل خفيف ونظيف */
+            box-shadow: 0 8px 16px rgba(75, 54, 33, 0.1); 
+            border: 1px solid transparent; /* تم إخفاء الحدود الصلبة */
             border-radius: 8px;
             z-index: 1001;
             padding: 8px 0;
-            border: 1px solid var(--soft-gold);
-            margin-top: 10px; /* مسافة بسيطة تحت القائمة الرئيسية */
+            margin-top: 5px; 
         }
 
         .dropdown-content a {
@@ -98,35 +91,32 @@
             text-decoration: none;
             display: block;
             text-align: right;
-            font-size: 0.75rem; /* خط أصغر للقائمة الفرعية */
+            font-size: 0.75rem;
             font-weight: bold;
             transition: 0.3s;
         }
 
         .dropdown-content a:hover {
-            background-color: #fdfaf5; /* خلفية خفيفة عند التحويم */
+            background-color: #fdfaf5; 
             color: var(--text-honey);
         }
 
-        /* إظهار القائمة المنسدلة عند التحويم فوق "أعمالي" */
         .dropdown:hover .dropdown-content {
             display: block;
         }
 
-        /* إضافة سهم صغير بجانب "أعمالي" */
         .dropdown-trigger::after {
             content: ' ▾';
             font-size: 0.8em;
             margin-right: 4px;
             opacity: 0.5;
         }
-
         /* --- نهاية تنسيقات القائمة المحدثة --- */
 
         .header-section { 
             z-index: 10; 
             text-align: center; 
-            margin-top: 10px; 
+            margin-top: 30px; 
         }
         .header-section h1 { 
             font-size: 2.2rem; 
@@ -214,22 +204,18 @@
 </head>
 <body>
 
-    <!-- القائمة القديمة والأنيقة المحدثة بالـ Dropdown -->
-    <div class="nav-container">
-        <ul class="nav-links">
-            <li><a href="index.html">الرئيسية</a></li>
-            <li class="dropdown">
-                <button class="dropdown-trigger">أعمالي</button>
-                <div class="dropdown-content">
-                    <a href="drama.html">دراما</a>
-                    <a href="theater.html">مسرح</a>
-                </div>
-            </li>
-            <!-- جعل "مختارات جاز" ذهبية اللون ومفعلة لأنها الصفحة الحالية -->
-            <li><a href="BOUTIQAAT.html" class="active">مختارات جاز</a></li>
-            <li><a href="business.html">تواصل</a></li>
-        </ul>
-    </div>
+    <ul class="nav-links">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li class="dropdown">
+            <button class="dropdown-trigger">أعمالي</button>
+            <div class="dropdown-content">
+                <a href="drama.html">دراما</a>
+                <a href="theater.html">مسرح</a>
+            </div>
+        </li>
+        <li><a href="BOUTIQAAT.html" class="active">مختارات جاز</a></li>
+        <li><a href="business.html">تواصل</a></li>
+    </ul>
 
     <div class="header-section">
         <h1 class="page-title"> </h1>
