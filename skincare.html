@@ -4,20 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JAZ | SKINCARE</title>
+    <link rel="icon" type="image/png" href="jaz1.jpeg">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --main-bg: #fdfbf9; --deep-mocha: #4B3621; 
+            --main-bg: #fdfbf9; 
+            --deep-mocha: #4B3621; 
             --caramel-linear: linear-gradient(135deg, #C68E17 0%, #E3A857 50%, #7B3F00 100%);
-            --text-honey: #C68E17; --soft-gold: rgba(198, 142, 23, 0.1);
+            --text-honey: #C68E17; 
+            --soft-gold: rgba(198, 142, 23, 0.1);
         }
+
         body {
-            font-family: 'Cairo', sans-serif; background-color: var(--main-bg); color: var(--deep-mocha);
-            margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; overflow-x: hidden; position: relative;
+            font-family: 'Cairo', sans-serif; 
+            background-color: var(--main-bg); 
+            color: var(--deep-mocha);
+            margin: 0; display: flex; flex-direction: column; align-items: center; 
+            min-height: 100vh; overflow-x: hidden; position: relative;
             padding-bottom: 50px;
         }
 
-        /* زر الرجوع الناعم */
+        /* زر الرجوع */
         .back-mini {
             position: fixed; top: 15px; right: 15px;
             text-decoration: none; color: var(--deep-mocha);
@@ -28,151 +35,114 @@
         }
         .back-mini:hover { opacity: 1; transform: scale(1.05); color: var(--text-honey); }
 
-        /* التأثيرات الخلفية */
-        body::after { content: ""; position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 100%; height: 500px; background: radial-gradient(circle at top, rgba(198, 142, 23, 0.08) 0%, transparent 70%); pointer-events: none; z-index: 1; }
-        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('https://www.transparenttextures.com/patterns/stardust.png'); opacity: 0.05; z-index: 0; pointer-events: none; }
-        .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 10rem; font-weight: 900; color: var(--deep-mocha); opacity: 0.02; z-index: 0; pointer-events: none; }
-
-        /* --- تنسيقات القائمة النظيفة والمطابقة لـ index.html --- */
-        /* الحاوية الرئيسية للقائمة لتكون في المنتصف */
-        .nav-container {
-            position: relative; 
-            z-index: 1000; /* لضمان ظهور القائمة المنسدلة فوق المحتوى */
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            margin-bottom: 40px; /* المسافة تحت القائمة */
-        }
-
+        /* --- القائمة العلوية الموحدة --- */
         .nav-links { 
+            position: relative; 
+            top: 20px; 
             display: flex; 
-            gap: 15px; /* المسافة الدقيقة المطابقة لـ index */
+            gap: 15px; 
+            z-index: 1000; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            width: 100%; 
+            margin-bottom: 40px; 
             padding: 0;
-            margin: 0;
             list-style: none;
         }
 
-        .nav-links > li {
-            position: relative; /* ضروري لتموضع القائمة المنسدلة */
-        }
+        .nav-links li { position: relative; }
 
-        .nav-links > li > a,
-        .dropdown-trigger { 
+        .nav-links li a, .dropdown-trigger { 
             color: var(--deep-mocha); 
             text-decoration: none; 
-            opacity: 0.7; /* الشفافية الأصلية الهادئة */
+            opacity: 0.7; 
             transition: 0.3s; 
             font-weight: bold; 
-            font-size: 0.8rem; /* الحجم الصغير الأصلي المطابق لـ index */
-            cursor: pointer;
+            font-size: 0.8rem; 
+            padding: 5px 10px;
+            display: block;
             background: none;
             border: none;
-            padding: 0;
+            cursor: pointer;
             font-family: 'Cairo', sans-serif;
         }
 
-        /* تأثيرات التحويم والصفحة النشطة */
-        .nav-links > li > a:hover,
-        .dropdown:hover .dropdown-trigger,
-        .nav-links > li > a.active { 
+        .nav-links li a:hover, .dropdown:hover .dropdown-trigger { 
             opacity: 1; 
-            color: var(--text-honey); /* يتحول للذهبي الهادئ */
+            color: var(--text-honey); 
         }
 
-        /* الحل الدقيق: تنسيقات القائمة المنسدلة النظيفة مثل index */
+        /* --- تنسيق القوائم المنسدلة --- */
         .dropdown-content {
-            display: none; /* مخفية */
+            display: none; 
             position: absolute;
-            top: 100%; /* تظهر مباشرة تحت "أعمالي" */
-            right: 0; /* محاذاة لليمين */
+            top: 100%; 
+            right: 0;
             background-color: white; 
-            min-width: 120px;
-            /* الظل النظيف المأخوذ من index */
-            box-shadow: 0 8px 16px rgba(75, 54, 33, 0.1); 
-            border-radius: 8px;
+            min-width: 130px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            border: 1px solid var(--soft-gold);
+            border-radius: 10px;
             z-index: 1001;
             padding: 8px 0;
-            /* تم حذف الحدود الرمادية الصلبة لتتطابق مع الرئيسية */
-            border: 1px solid transparent; 
-            margin-top: 10px; /* مسافة بسيطة تحت القائمة الرئيسية */
+            margin-top: 5px;
         }
 
         .dropdown-content a {
-            color: var(--deep-mocha);
-            padding: 8px 15px;
+            color: var(--deep-mocha) !important;
+            padding: 10px 15px;
             text-decoration: none;
             display: block;
             text-align: right;
-            font-size: 0.75rem; /* خط أصغر للقائمة الفرعية المطابق لـ index */
+            font-size: 0.75rem;
             font-weight: bold;
-            transition: 0.3s;
+            opacity: 1 !important;
         }
 
         .dropdown-content a:hover {
-            background-color: #fdfaf5; /* خلفية خفيفة عند التحويم */
-            color: var(--text-honey);
+            background-color: var(--soft-gold);
+            color: var(--text-honey) !important;
         }
 
-        /* إظهار القائمة المنسدلة عند التحويم فوق "أعمالي" */
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
+        .dropdown:hover .dropdown-content { display: block; }
 
-        /* إضافة سهم صغير بجانب "أعمالي" */
-        .dropdown-trigger::after {
-            content: ' ▾';
-            font-size: 0.8em;
-            margin-right: 4px;
-            opacity: 0.5;
-        }
-        /* --- نهاية تنسيقات القائمة المحدثة الدقيقة من index --- */
-
+        /* --- تصميم المحتوى --- */
         .header-title { z-index: 10; margin-top: 30px; text-align: center; }
-        .header-title h1 { background: var(--caramel-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.2rem; margin: 0; }
-
-        /* شبكة العرض - عمودين متساويين */
+        
         .product-container { 
             z-index: 10; 
             width: 95%; 
             max-width: 800px; 
-            margin: 30px 0; 
+            margin: 20px 0; 
             display: grid; 
             grid-template-columns: 1fr 1fr; 
             gap: 15px; 
         }
 
-        /* البطاقة */
         .product-card { 
             background: white; 
             border-radius: 20px; 
-            padding: 10px; 
+            padding: 12px; 
             border: 1px solid var(--soft-gold); 
             text-align: center; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.02); 
-            transition: 0.3s;
+            box-shadow: 0 8px 20px rgba(75, 54, 33, 0.03); 
+            transition: 0.3s ease;
         }
-        .product-card:hover { transform: scale(1.02); border-color: var(--text-honey); }
+        .product-card:hover { transform: translateY(-5px); border-color: var(--text-honey); }
 
-        /* الصورة الطولية */
         .product-img { 
             width: 100%; 
             height: 280px; 
             border-radius: 15px; 
             overflow: hidden; 
-            margin-bottom: 10px; 
-            background-color: #f9f9f9;
+            margin-bottom: 15px; 
         }
-        .product-img img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-        }
+        .product-img img { width: 100%; height: 100%; object-fit: cover; }
 
         .product-title { 
             font-size: 0.95rem; 
             font-weight: bold; 
-            margin: 8px 0; 
+            margin: 10px 0; 
             color: var(--deep-mocha);
             min-height: 40px;
             display: flex;
@@ -184,82 +154,81 @@
             display: block; 
             background: var(--caramel-linear); 
             color: white; 
-            padding: 10px; 
+            padding: 12px; 
             border-radius: 50px; 
             text-decoration: none; 
             font-weight: bold; 
-            font-size: 0.75rem;
-            margin-top: 5px;
-            box-shadow: 0 4px 10px rgba(198,142,23,0.15);
+            font-size: 0.8rem;
+            box-shadow: 0 4px 12px rgba(198,142,23,0.2);
         }
 
-        @media (max-width: 500px) {
-            .product-img { height: 220px; }
-        }
+        .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 10rem; font-weight: 900; color: var(--deep-mocha); opacity: 0.02; z-index: 0; pointer-events: none; }
 
-        footer { margin-top: auto; padding: 30px; font-size: 0.7rem; opacity: 0.5; z-index: 10; color: var(--deep-mocha); font-weight: bold; text-align: center; }
+        @media (max-width: 500px) { .product-img { height: 200px; } }
+
+        footer { margin-top: auto; padding: 30px; font-size: 0.7rem; opacity: 0.6; z-index: 10; color: var(--deep-mocha); font-weight: bold; text-align: center; }
     </style>
 </head>
 <body>
-    <!-- زر الرجوع -->
     <a href="BOUTIQAAT.html" class="back-mini">رجوع →</a>
-
     <div class="watermark">SKINCARE</div>
     
-    <!-- القائمة القديمة والأنيقة المحدثة بالـ Dropdown النظيفة -->
-    <div class="nav-container">
-        <ul class="nav-links">
-            <li><a href="index.html">الرئيسية</a></li>
-            <li class="dropdown">
-                <button class="dropdown-trigger">أعمالي</button>
-                <div class="dropdown-content">
-                    <a href="drama.html">دراما</a>
-                    <a href="theater.html">مسرح</a>
-                </div>
-            </li>
-            <li><a href="BOUTIQAAT.html">مختارات جاز</a></li>
-            <li><a href="business.html">تواصل</a></li>
-        </ul>
-    </div>
+    <ul class="nav-links">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li class="dropdown">
+            <button class="dropdown-trigger">أعمالي ▾</button>
+            <div class="dropdown-content">
+                <a href="drama.html">دراما</a>
+                <a href="theater.html">مسرح</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <button class="dropdown-trigger" style="color: var(--text-honey); opacity: 1;">مختارات جاز ▾</button>
+            <div class="dropdown-content">
+                <a href="makeup.html">مكياج</a>
+                <a href="perfume.html">عطور</a>
+                <a href="BOUTIQAAT.html">الكل</a>
+            </div>
+        </li>
+        <li><a href="business.html">تواصل</a></li>
+    </ul>
 
     <div class="header-title">
-        <h1> </h1>
-        <p style="font-weight: bold; opacity: 0.7; font-size: 0.9rem;">أسرار جمالك مع جاز ✨</p>
+        <h1 style="background: var(--caramel-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2rem; margin: 0;">عناية</h1>
+        <p style="font-weight: bold; opacity: 0.8; font-size: 0.9rem;">أسرار جمالك مع جاز ✨</p>
     </div>
 
     <div class="product-container">
-        <!-- المنتج الأول -->
         <div class="product-card">
             <div class="product-img">
-                <img src="اوردينالي.jpeg" alt="">
+                <img src="اوردينالي.jpeg" alt="The Ordinary">
             </div>
-            <div class="product-title">  مجموعة ذا موست لوفد</div>
-            <a href="https://www.boutiqaat.com/ar-sa/women/softie-skin-set-2-pcs-1/p/cid/12388/" class="buy-btn">اطلبي عبر بوتيكات</a>
+            <div class="product-title">مجموعة ذا موست لوفد</div>
+            <a href="https://www.boutiqaat.com/ar-sa/women/softie-skin-set-2-pcs-1/p/cid/12388/" target="_blank" class="buy-btn">اطلبي عبر بوتيكات</a>
         </div>
 
-        <!-- المنتج الثاني -->
         <div class="product-card">
             <div class="product-img">
-                <img src="كيلز.jpeg" alt="">
+                <img src="كيلز.jpeg" alt="Kiehl's">
             </div>
-            <div class="product-title"> مجموعة معالج العين الكريمي  </div>
-            <a href="https://www.boutiqaat.com/ar-sa/women/creamy-eye-cream-duo-2-pcs-1/p/cid/12388/" class="buy-btn">اطلبي عبر بوتيكات</a>
+            <div class="product-title">مجموعة معالج العين الكريمي</div>
+            <a href="https://www.boutiqaat.com/ar-sa/women/creamy-eye-cream-duo-2-pcs-1/p/cid/12388/" target="_blank" class="buy-btn">اطلبي عبر بوتيكات</a>
         </div>
            
          <div class="product-card">
             <div class="product-img">
-                <img src="غسول الحلزون من كوسركس.jpeg" alt="">
+                <img src="غسول الحلزون من كوسركس.jpeg" alt="COSRX">
             </div>
-            <div class="product-title">  قريبااااا</div>
-            <a href="" class="buy-btn">اطلبي عبر بوتيكات</a>
+            <div class="product-title">قريباً.. غسول الحلزون</div>
+            <a href="#" class="buy-btn">اطلبي عبر بوتيكات</a>
         </div>
             
          <div class="product-card">
             <div class="product-img">
-                <img src="غسول الحلزون من كوسركس.jpeg" alt="">
+                <img src="غسول الحلزون من كوسركس.jpeg" alt="COSRX">
             </div>
-            <div class="product-title">  قريبااااا</div>
-            <a href="" class="buy-btn">اطلبي عبر بوتيكات</a>
+            <div class="product-title">قريباً..</div>
+            <a href="#" class="buy-btn">اطلبي عبر بوتيكات</a>
         </div>
     </div>
 

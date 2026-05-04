@@ -61,19 +61,18 @@
             object-fit: cover; 
         }
 
-        /* --- تنسيقات القائمة الرئيسية المعدلة --- */
         .nav-links { 
             position: relative; 
             top: 20px; 
             display: flex; 
             gap: 15px; 
-            z-index: 100; /* رفع الـ z-index لضمان ظهور القائمة فوق المحتوى */
+            z-index: 100; 
             flex-wrap: wrap; 
             justify-content: center; 
             width: 100%; 
             margin-bottom: 40px; 
             padding: 0;
-            list-style: none; /* إزالة النقاط من القائمة */
+            list-style: none; 
         }
         .nav-links > li > a { 
             color: var(--deep-mocha); 
@@ -90,15 +89,14 @@
             color: var(--text-honey); 
         }
 
-        /* --- تنسيقات القائمة المنسدلة (Dropdown) الجديدة --- */
         .dropdown {
             position: relative;
         }
 
         .dropdown-content {
-            display: none; /* مخفية افتراضياً */
+            display: none; 
             position: absolute;
-            top: 100%; /* تظهر أسفل العنصر الأب */
+            top: 100%; 
             right: 0;
             background-color: white;
             min-width: 120px;
@@ -118,7 +116,7 @@
             font-size: 0.75rem;
             font-weight: bold;
             transition: 0.3s;
-            text-align: right; /* محاذاة النص لليمين */
+            text-align: right; 
         }
 
         .dropdown-content li a:hover {
@@ -126,11 +124,9 @@
             color: var(--text-honey);
         }
 
-        /* إظهار القائمة عند تمرير الماوس */
         .dropdown:hover .dropdown-content {
             display: block;
         }
-        /* ------------------------------------------- */
 
         .title-jaz { 
             z-index: 10; 
@@ -184,23 +180,55 @@
             font-size: 1.1rem;
             color: var(--text-honey);
         }
+
+        /* --- تنسيق نافذة الدخول المطور (بدون زحمة) --- */
+        #birthday-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(43, 31, 19, 0.96); /* شفافية لإعطاء عمق */
+            backdrop-filter: blur(12px); /* تغبيش راقي للخلفية */
+            z-index: 9999;
+            display: none; align-items: center; justify-content: center;
+            flex-direction: column; color: white; text-align: center;
+            font-family: 'Cairo', sans-serif; padding: 20px;
+            transition: opacity 0.8s ease; /* انيميشن عند الاختفاء */
+        }
+        .modal-btn {
+            background: var(--caramel-linear); color: white; border: none;
+            padding: 15px 45px; border-radius: 50px; cursor: pointer;
+            font-weight: bold; font-size: 1.1rem; margin-top: 25px;
+            box-shadow: 0 5px 15px rgba(198, 142, 23, 0.4);
+        }
+        /* أيقونة النجمة المتحركة بهدوء */
+        .floating-star {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
     </style>
 </head>
 <body onclick="enableAudio()">
 
-    <!-- تم تعديل الهيكل البرمي ليصبح قائمة (ul) ليدعم القوائم المنسدلة -->
+    <!-- نافذة الدخول الجمالية -->
+    <div id="birthday-overlay">
+        <div class="floating-star">✨</div>
+        <h2 style="color: var(--text-honey); font-size: 1.8rem; margin-bottom: 10px;">لحظة خاصة تنتظرك..</h2>
+        <p style="opacity: 0.8; max-width: 280px; line-height: 1.6;">بمناسبة ميلاد جاز، ادخلي لتكتمل الحكاية</p>
+        <button class="modal-btn" onclick="startCelebration()">دخول</button>
+    </div>
+
     <ul class="nav-links">
         <li><a href="index.html" style="color: var(--text-honey);">الرئيسية</a></li>
-        
-        <!-- هذا هو الجزء المعدل: قائمة منسدلة لـ "أعمالي" -->
         <li class="dropdown">
-            <a href="#">أعمالي <span style="font-size: 0.6rem;">▼</span></a> <!-- رابط وهمي # لكي لا يذهب لصفحة أخرى عند الضغط -->
+            <a href="#">أعمالي <span style="font-size: 0.6rem;">▼</span></a>
             <ul class="dropdown-content">
                 <li><a href="drama.html">دراما</a></li>
-                <li><a href="theater.html">مسرح</a></li> <!-- تأكدي من وجود ملف theater.html -->
+                <li><a href="theater.html">مسرح</a></li>
             </ul>
         </li>
-        
         <li><a href="BOUTIQAAT.html">مختارات جاز</a></li>
         <li><a href="business.html">تواصل</a></li>
     </ul>
@@ -243,20 +271,44 @@
     </div>
 
     <audio id="introAudio" src="الموسيقى.mp3" preload="auto" loop></audio>
-    <audio id="birthdayAudio" src="التهنئه.mp3" preload="auto" loop></audio>
+    <audio id="birthdayAudio" src="غنو لحبيبي.mp3" preload="auto" loop></audio>
 
    <footer>جميع الحقوق محفوظة لـ JAZ 2026 ©️ | تم التطوير بواسطة <a href="https://www.tiktok.com/@shx_ab1" target="_blank" style="color: var(--text-honey); text-decoration: none; font-weight: bold;">SHOUQ🤎🇸🇦</a></footer>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
-        // الكود البرمجي (JavaScript) كما هو بدون تغيير
         var birthdayDate = new Date("May 6, 2026 00:00:00").getTime(); 
-        var audioEnabled = false;
+        var startTime = birthdayDate - (60 * 60 * 1000); 
+        var endTime = birthdayDate + (24 * 60 * 60 * 1000); 
         
+        var audioEnabled = false;
+
+        function checkTimedModal() {
+            var now = new Date().getTime();
+            if (now >= startTime && now <= endTime) {
+                document.getElementById('birthday-overlay').style.display = 'flex';
+            }
+        }
+
+        function startCelebration() {
+            audioEnabled = true;
+            var overlay = document.getElementById('birthday-overlay');
+            
+            // تأثير التلاشي عند الإغلاق
+            overlay.style.opacity = '0';
+            setTimeout(function() {
+                overlay.style.display = 'none';
+            }, 800);
+
+            checkAudioLogic();
+            if (new Date().getTime() >= birthdayDate) {
+                startContinuousConfetti();
+            }
+        }
+
         function checkStatus() {
             var now = new Date().getTime();
             var distance = birthdayDate - now;
-            
             if (distance > 0) {
                 localStorage.setItem('jazCelebrationStarted', 'false');
                 return false;
@@ -344,10 +396,16 @@
             confetti({ particleCount: 40, angle: 120, spread: 55, origin: { x: 1 }, colors: colors });
         }
 
-        function openBox() { document.getElementById("messageBox").style.display = "block"; }
+        function openBox() { 
+            document.getElementById("messageBox").style.display = "block"; 
+            enableAudio(); 
+        }
         function closeBox() { document.getElementById("messageBox").style.display = "none"; }
         
-        window.onload = startCountdown;
+        window.onload = function() {
+            startCountdown();
+            checkTimedModal();
+        };
     </script>
 </body>
 </html>

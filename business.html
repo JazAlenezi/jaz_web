@@ -26,22 +26,11 @@
             padding-bottom: 50px;
         }
 
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0; left: 50%;
-            transform: translateX(-50%);
-            width: 100%; height: 500px;
-            background: radial-gradient(circle at top, rgba(198, 142, 23, 0.08) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 1;
-        }
-
         .watermark {
             position: fixed;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 12rem;
+            font-size: 10rem;
             font-weight: 900;
             color: var(--deep-mocha);
             opacity: 0.02;
@@ -50,97 +39,74 @@
             user-select: none;
         }
 
-        /* --- الحل النهائي: تنسيقات القائمة المنسوخة بحذافيرها من index.html --- */
+        /* --- توحيد القائمة العلوية مع الصفحة الرئيسية --- */
         .nav-links { 
             position: relative; 
             top: 20px; 
             display: flex; 
-            gap: 15px; /* المسافة المأخوذة من index */
+            gap: 15px; 
             z-index: 1000; 
             flex-wrap: wrap; 
             justify-content: center; 
             width: 100%; 
             margin-bottom: 40px; 
             padding: 0;
-            list-style: none; /* إزالة النقاط */
+            list-style: none;
         }
 
-        .nav-links li {
-            position: relative;
-        }
+        .nav-links li { position: relative; }
 
-        /* تنسيق الخط الصغير والجميل المطابق لـ index للقائمة الأساسية */
-        .nav-links li a,
-        .dropdown-trigger { 
+        .nav-links li a { 
             color: var(--deep-mocha); 
             text-decoration: none; 
             opacity: 0.7; 
             transition: 0.3s; 
             font-weight: bold; 
-            font-size: 0.8rem; /* الحجم الصغير الأصلي المطابق لـ index */
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0;
-            font-family: 'Cairo', sans-serif;
+            font-size: 0.8rem; /* نفس حجم الرئيسية */
+            padding: 5px 10px;
+            display: block;
         }
 
-        /* تأثيرات التحويم والصفحة النشطة */
-        .nav-links li a:hover,
-        .dropdown:hover .dropdown-trigger,
-        .nav-links li a.active { 
+        .nav-links li a:hover, .nav-links li a.active { 
             opacity: 1; 
             color: var(--text-honey); 
         }
 
-        /* تنسيقات القائمة المنسدلة (Dropdown) النظيفة والمطابقة لـ index */
+        /* --- تنسيق المنسدلة الواضح --- */
         .dropdown-content {
-            display: none; /* مخفية افتراضياً */
+            display: none; 
             position: absolute;
-            top: 100%; /* تظهر مباشرة تحت "أعمالي" */
+            top: 100%; 
             right: 0;
-            background-color: white; 
-            min-width: 120px;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.1); /* الظل النظيف المأخوذ من index */
-            border-radius: 8px;
+            background-color: white;
+            min-width: 130px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid var(--soft-gold);
+            border-radius: 10px;
             z-index: 1001;
             padding: 8px 0;
-            /* تم حذف الحدود الرمادية الصلبة لتتطابق مع الرئيسية */
-            border: 1px solid transparent; 
-            margin-top: 5px; /* مسافة بسيطة تحت القائمة الرئيسية */
+            margin-top: 10px;
         }
 
-        /* تنسيق الخط الصغير والجميل المطابق لـ index للقائمة المنسدلة */
         .dropdown-content a {
-            color: var(--deep-mocha);
-            padding: 8px 15px;
+            color: var(--deep-mocha) !important;
+            padding: 10px 15px;
             text-decoration: none;
             display: block;
             text-align: right;
-            font-size: 0.75rem; /* خط أصغر للقائمة الفرعية المطابق لـ index */
+            font-size: 0.75rem;
             font-weight: bold;
-            transition: 0.3s;
+            opacity: 1 !important;
         }
 
         .dropdown-content a:hover {
-            background-color: #fdfaf5; /* خلفية خفيفة عند التحويم */
-            color: var(--text-honey);
+            background-color: var(--soft-gold);
+            color: var(--text-honey) !important;
         }
 
-        /* إظهار القائمة المنسدلة عند تمرير الماوس فوق "أعمالي" */
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
+        .dropdown:hover .dropdown-content { display: block; }
 
-        /* إضافة سهم صغير بجانب "أعمالي" */
-        .dropdown-trigger::after {
-            content: ' ▾';
-            font-size: 0.8em;
-            margin-right: 4px;
-            opacity: 0.5;
-        }
-        /* --- نهاية تنسيقات القائمة المنسوخة من index --- */
-
+        /* --- محتوى صفحة التواصل --- */
         .content { 
             z-index: 10; 
             padding: 20px; 
@@ -154,18 +120,19 @@
             border: 1px solid var(--soft-gold);
             padding: 30px 20px;
             position: relative;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(75, 54, 33, 0.08);
+            border-radius: 25px;
+            box-shadow: 0 15px 45px rgba(75, 54, 33, 0.08);
         }
 
         .profile-image-container {
             width: 100%;           
-            height: 200px;         
-            margin-bottom: 20px;
-            border-radius: 15px;   
+            height: 220px;         
+            margin-bottom: 25px;
+            border-radius: 20px;   
             overflow: hidden;
-            border: 1px solid var(--soft-gold);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
+
         .profile-image-container img {
             width: 100%;
             height: 100%;
@@ -184,11 +151,9 @@
 
         .profession { 
             color: var(--deep-mocha); 
-            font-size: 0.8rem; 
-            text-transform: uppercase; 
-            letter-spacing: 1.5px; 
-            margin-bottom: 25px; 
-            opacity: 0.7;
+            font-size: 0.85rem; 
+            margin-bottom: 30px; 
+            opacity: 0.8;
             font-weight: bold;
         }
 
@@ -196,63 +161,68 @@
 
         .social-item {
             display: flex; align-items: center; justify-content: space-between;
-            background: #fdfdfd;
-            padding: 14px 18px;
-            border: 1px solid rgba(198, 142, 23, 0.15);
+            background: #fafafa;
+            padding: 15px 20px;
+            border: 1px solid rgba(198, 142, 23, 0.1);
             text-decoration: none; 
             color: var(--deep-mocha);
-            transition: 0.3s; 
+            transition: 0.3s ease; 
             font-size: 0.9rem;
-            border-radius: 10px;
+            border-radius: 15px;
             font-weight: bold;
         }
 
         .social-item:hover {
             border-color: var(--text-honey);
-            transform: scale(1.02);
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(198, 142, 23, 0.1);
         }
 
-        .social-item i { color: var(--text-honey); font-size: 1.2rem; }
+        .social-item i { color: var(--text-honey); font-size: 1.3rem; }
 
         .email-btn {
             margin-top: 25px; 
             width: 100%; 
             background: var(--caramel-linear);
             color: white; 
-            padding: 14px; 
+            padding: 16px; 
             display: block; 
             text-decoration: none;
             font-weight: bold; 
             border-radius: 50px;
-            box-sizing: border-box;
-            box-shadow: 0 4px 15px rgba(198, 142, 23, 0.3);
+            box-shadow: 0 8px 20px rgba(198, 142, 23, 0.3);
+            transition: 0.3s;
         }
+
+        .email-btn:hover { opacity: 0.9; transform: scale(1.02); }
 
         footer {
             margin-top: auto;
-            padding: 20px;
-            font-size: 0.65rem;
-            opacity: 0.7;
+            padding: 30px;
+            font-size: 0.7rem;
+            opacity: 0.6;
             z-index: 10;
             color: var(--deep-mocha);
             text-align: center;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="watermark">BUSINESS</div>
+    <div class="watermark">JAZ BLOGG</div>
 
     <ul class="nav-links">
         <li><a href="index.html">الرئيسية</a></li>
         <li class="dropdown">
-            <button class="dropdown-trigger">أعمالي</button>
+            <a href="#">أعمالي <span style="font-size: 0.6rem;">▼</span></a>
             <div class="dropdown-content">
                 <a href="drama.html">دراما</a>
                 <a href="theater.html">مسرح</a>
             </div>
         </li>
         <li><a href="BOUTIQAAT.html">مختارات جاز</a></li>
-        <li><a href="business.html" class="active">تواصل</a></li>
+        <li><a href="business.html" class="active" style="color: var(--text-honey); opacity: 1;">تواصل</a></li>
     </ul>
 
     <div class="content">
@@ -261,36 +231,36 @@
                 <img src="تواصل.jpeg" alt="JAZ"> 
             </div>
 
-            <h1 class="page-title"> Yasmeen Alenezi</h1>
-            <div class="profession">للتواصل المهني والتعاون الإعلاني</div>
+            <h1 class="page-title">Yasmeen Alenezi</h1>
+            <div class="profession">للتواصل المهني والتعاون الإعلاني ✨</div>
             
             <div class="social-links">
-                <a href="https://www.boutiqaat.com/ar-sa/women/jaz-alenazi-1/cb/" class="social-item">
+                <a href="https://www.boutiqaat.com/ar-sa/women/jaz-alenazi-1/cb/" target="_blank" class="social-item">
                     <span>بوتيكات | Boutiqaat</span>
                     <i class="fas fa-shopping-bag"></i>
                 </a>
 
-                <a href="https://wa.me/96594931662" class="social-item">
-                    <span>واتساب | للدعاية والإعلان</span>
+                <a href="https://wa.me/96594931662" target="_blank" class="social-item">
+                    <span>واتساب | WhatsApp</span>
                     <i class="fab fa-whatsapp"></i>
                 </a>
                 
-                <a href="https://www.instagram.com/jazblogg/" class="social-item">
+                <a href="https://www.instagram.com/jazblogg/" target="_blank" class="social-item">
                     <span>انستقرام | Instagram</span>
                     <i class="fab fa-instagram"></i>
                 </a>
 
-                <a href="https://www.snapchat.com/add/Jazblogg" class="social-item">
+                <a href="https://www.snapchat.com/add/Jazblogg" target="_blank" class="social-item">
                     <span>سناب شات | Snapchat</span>
                     <i class="fab fa-snapchat"></i>
                 </a>
 
-                <a href="http://www.tiktok.com/@jazblogg?_t=8gK1TwwjY3E&_r=1" class="social-item">
+                <a href="http://www.tiktok.com/@jazblogg" target="_blank" class="social-item">
                     <span>تيك توك | TikTok</span>
                     <i class="fab fa-tiktok"></i>
                 </a>
 
-                <a href="https://l.jaco.live/IQIxJ8alto" class="social-item">
+                <a href="https://l.jaco.live/IQIxJ8alto" target="_blank" class="social-item">
                     <span>جاكو | Jaco</span>
                     <i class="fas fa-video"></i>
                 </a>
