@@ -1,0 +1,83 @@
+:root {
+    --main-bg: #fdfbf9; 
+    --deep-mocha: #4B3621; 
+    --caramel-linear: linear-gradient(135deg, #C68E17 0%, #E3A857 50%, #7B3F00 100%);
+    --text-honey: #C68E17;
+    --soft-gold: rgba(198, 142, 23, 0.1);
+    --side-box-bg: rgba(0, 0, 0, 0.85); 
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: var(--main-bg); 
+    color: var(--deep-mocha); 
+    margin: 0;
+    display: flex; flex-direction: column; align-items: center;
+    min-height: 100vh; overflow-x: hidden;
+    position: relative; padding-bottom: 50px;
+}
+
+/* القائمة العلوية والمنسدلة */
+.nav-links { 
+    position: relative; top: 20px; display: flex; gap: 15px; 
+    z-index: 1000; flex-wrap: wrap; justify-content: center; 
+    width: 100%; margin-bottom: 40px; padding: 0; list-style: none; 
+}
+.nav-links li a { 
+    color: var(--deep-mocha); text-decoration: none; opacity: 0.7; 
+    transition: 0.3s; font-weight: bold; font-size: 0.8rem; padding: 5px 10px;
+}
+.nav-links li a:hover { opacity: 1; color: var(--text-honey); }
+
+.dropdown { position: relative; }
+.dropdown-content {
+    display: none; position: absolute; top: 100%; right: 0;
+    background-color: white; min-width: 130px; border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid var(--soft-gold);
+    z-index: 1001; padding: 8px 0;
+}
+.dropdown-content a {
+    color: var(--deep-mocha) !important; padding: 10px 15px; text-decoration: none;
+    display: block; text-align: right; font-size: 0.75rem; font-weight: bold;
+}
+.dropdown:hover .dropdown-content { display: block; }
+
+/* تأثير النبض للصورة */
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+
+.hero-container { 
+    background: white; border: 1px solid var(--text-honey); padding: 8px; 
+    border-radius: 10px; animation: heartbeat 3s ease-in-out infinite; z-index: 10;
+}
+.profile-img { width: 300px; height: 400px; object-fit: cover; border-radius: 4px; }
+
+/* نافذة الدخول (Birthday Overlay) */
+#birthday-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(43, 31, 19, 0.98); backdrop-filter: blur(12px);
+    z-index: 9999; display: none; flex-direction: column; 
+    align-items: center; justify-content: center; color: white; text-align: center;
+}
+
+/* العداد */
+.countdown-container { display: flex; gap: 12px; direction: ltr; margin: 20px 0; z-index: 10; }
+.time-block { 
+    display: flex; flex-direction: column; align-items: center; 
+    border: 1px solid var(--soft-gold); padding: 10px; width: 60px; 
+    background: white; border-radius: 8px; 
+}
+.time-number { font-size: 1.6rem; font-weight: bold; color: var(--deep-mocha); }
+.time-label { font-size: 0.65rem; color: var(--text-honey); }
+
+/* الأزرار */
+.message-trigger, .modal-btn { 
+    background: var(--caramel-linear); border: none; color: white; 
+    padding: 12px 30px; border-radius: 50px; cursor: pointer; 
+    font-weight: bold; font-family: 'Cairo'; transition: 0.3s;
+}
+.message-trigger:hover { transform: scale(1.05); }
+
+footer { margin-top: auto; padding: 20px; font-size: 0.7rem; opacity: 0.6; z-index: 10; }
