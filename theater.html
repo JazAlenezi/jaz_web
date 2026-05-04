@@ -13,7 +13,6 @@
             --caramel-linear: linear-gradient(135deg, #C68E17 0%, #E3A857 50%, #7B3F00 100%);
             --text-honey: #C68E17;
             --soft-gold: rgba(198, 142, 23, 0.1);
-            --back-btn-bg: #f2f2f2; 
         }
 
         body {
@@ -25,15 +24,15 @@
             min-height: 100vh; position: relative; overflow-x: hidden;
         }
 
-        /* --- شريط التنقل الموحد والمنسدل --- */
+        /* --- شريط التنقل الموحد بعد التعديل --- */
         .nav-links-container { 
             position: relative; 
-            top: 20px; 
+            top: 40px; /* المسافة الموحدة الجديدة */
             display: flex; 
             justify-content: center; 
             align-items: center; 
             width: 100%;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             z-index: 1000;
         }
         
@@ -66,7 +65,6 @@
             color: var(--text-honey); 
         }
 
-        /* المنسدلة الواضحة */
         .dropdown-content {
             display: none; 
             position: absolute;
@@ -98,29 +96,14 @@
 
         .dropdown:hover .dropdown-content { display: block; }
 
-        .back-btn {
-            background-color: var(--back-btn-bg);
-            color: var(--deep-mocha);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.75rem;
-            padding: 6px 15px;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            position: absolute;
-            right: 30px; 
-            transition: 0.3s;
-        }
-        .back-btn:hover { background-color: #e6e6e6; }
+        /* تم حذف زر الرجوع (back-btn) */
 
         /* المحتوى */
-        .content { z-index: 10; padding: 20px; width: 95%; max-width: 500px; text-align: center; }
+        .content { z-index: 10; padding: 20px; width: 95%; max-width: 500px; text-align: center; margin-top: 20px; }
         .header-title h1 { background: var(--caramel-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.2rem; margin: 0; }
         .subtitle { color: var(--deep-mocha); font-size: 0.9rem; margin-bottom: 40px; opacity: 0.7; font-weight: bold; }
 
-        .theater-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .theater-grid { display: grid; grid-template-columns: 1fr; gap: 20px; justify-items: center; }
 
         .theater-card {
             background: white;
@@ -133,11 +116,13 @@
             box-shadow: 0 10px 25px rgba(75, 54, 33, 0.05);
             transition: 0.4s ease;
             position: relative;
+            width: 100%;
+            max-width: 300px;
         }
 
         .theater-card:hover { transform: translateY(-10px); border-color: var(--text-honey); }
 
-        .image-container { width: 100%; height: 250px; border-radius: 10px; overflow: hidden; margin-bottom: 15px; }
+        .image-container { width: 100%; height: 350px; border-radius: 10px; overflow: hidden; margin-bottom: 15px; }
         .image-container img { width: 100%; height: 100%; object-fit: cover; }
 
         .play-info h3 { color: var(--deep-mocha); font-size: 0.95rem; margin-bottom: 12px; font-weight: bold; }
@@ -162,18 +147,23 @@
     <div class="watermark">STAGE</div>
 
     <nav class="nav-links-container">
-        <a href="index.html" class="back-btn">رجوع →</a>
-
         <ul class="nav-text-links">
             <li><a href="index.html">الرئيسية</a></li>
             <li class="dropdown">
                 <button class="dropdown-trigger active-link" style="color: var(--text-honey); opacity: 1;">أعمالي ▾</button>
                 <div class="dropdown-content">
                     <a href="drama.html">دراما</a>
-                   
                 </div>
             </li>
-            <li><a href="BOUTIQAAT.html">مختارات جاز</a></li>
+            <li class="dropdown">
+                <button class="dropdown-trigger">مختارات جاز ▾</button>
+                <div class="dropdown-content">
+                    <a href="makeup.html">مكياج</a>
+                    <a href="perfumes.html">عطور</a>
+                    <a href="skincare.html">عناية</a>
+                    <a href="BOUTIQAAT.html">الكل</a>
+                </div>
+            </li>
             <li><a href="business.html">تواصل</a></li>
         </ul>
     </nav>

@@ -24,28 +24,17 @@
             padding-bottom: 50px;
         }
 
-        /* زر الرجوع */
-        .back-mini {
-            position: fixed; top: 15px; right: 15px;
-            text-decoration: none; color: var(--deep-mocha);
-            font-size: 0.75rem; font-weight: bold; z-index: 10000;
-            background: white; padding: 6px 15px; border-radius: 50px;
-            border: 1px solid var(--soft-gold); box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: 0.3s; opacity: 0.9;
-        }
-        .back-mini:hover { opacity: 1; transform: scale(1.05); color: var(--text-honey); }
-
         /* --- القائمة العلوية الموحدة --- */
         .nav-links { 
             position: relative; 
-            top: 20px; 
+            top: 40px; /* زيادة المسافة لتكون أوضح وتحت الكلمة الرئيسية */
             display: flex; 
             gap: 15px; 
             z-index: 1000; 
             flex-wrap: wrap; 
             justify-content: center; 
             width: 100%; 
-            margin-bottom: 40px; 
+            margin-bottom: 60px;
             padding: 0;
             list-style: none;
         }
@@ -72,7 +61,6 @@
             color: var(--text-honey); 
         }
 
-        /* --- تنسيق القوائم المنسدلة --- */
         .dropdown-content {
             display: none; 
             position: absolute;
@@ -106,7 +94,6 @@
 
         .dropdown:hover .dropdown-content { display: block; }
 
-        /* --- تصميم المحتوى --- */
         .header-title { z-index: 10; margin-top: 30px; text-align: center; }
         
         .product-container { 
@@ -130,33 +117,12 @@
         }
         .product-card:hover { transform: translateY(-5px); border-color: var(--text-honey); }
 
-        .product-img { 
-            width: 100%; 
-            height: 280px; 
-            border-radius: 15px; 
-            overflow: hidden; 
-            margin-bottom: 15px; 
-        }
+        .product-img { width: 100%; height: 280px; border-radius: 15px; overflow: hidden; margin-bottom: 15px; }
         .product-img img { width: 100%; height: 100%; object-fit: cover; }
 
-        .product-title { 
-            font-size: 0.95rem; 
-            font-weight: bold; 
-            margin: 10px 0; 
-            color: var(--deep-mocha);
-        }
+        .product-title { font-size: 0.95rem; font-weight: bold; margin: 10px 0; color: var(--deep-mocha); }
         
-        .buy-btn { 
-            display: block; 
-            background: var(--caramel-linear); 
-            color: white; 
-            padding: 12px; 
-            border-radius: 50px; 
-            text-decoration: none; 
-            font-weight: bold; 
-            font-size: 0.8rem;
-            box-shadow: 0 4px 12px rgba(198,142,23,0.2);
-        }
+        .buy-btn { display: block; background: var(--caramel-linear); color: white; padding: 12px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 0.8rem; box-shadow: 0 4px 12px rgba(198,142,23,0.2); }
 
         .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 10rem; font-weight: 900; color: var(--deep-mocha); opacity: 0.02; z-index: 0; pointer-events: none; }
 
@@ -166,7 +132,6 @@
     </style>
 </head>
 <body>
-    <a href="BOUTIQAAT.html" class="back-mini">رجوع →</a>
     <div class="watermark">PERFUME</div>
     
     <ul class="nav-links">
@@ -204,6 +169,6 @@
         </div>
     </div>
 
-    <footer>جميع الحقوق محفوظة لـ JAZ 2026 ©️ | تم التطوير بواسطة <a href="https://www.tiktok.com/@shx_ab1" target="_blank" style="color: var(--text-honey); text-decoration: none; font-weight: bold;">SHOUQ🤎🇸🇦</a></footer>
+    <footer>جميع الحقوق محفوظة لـ JAZ 2026 ©️</footer>
 </body>
 </html>
