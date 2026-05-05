@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="jaz1.jpeg">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     
-    <!-- مكتبة القصاصات الذهبية - تم التأكيد على وجودها -->
+    <!-- مكتبة القصاصات الذهبية -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     
     <style>
@@ -28,7 +28,7 @@
             display: flex; 
             flex-direction: column; 
             align-items: center;
-            justify-content: space-between; /* لملء الشاشة حتى الخط الأسود */
+            justify-content: space-between; 
             height: 100vh; 
             overflow: hidden; 
             position: relative; 
@@ -47,15 +47,15 @@
             transition: 0.3s; font-weight: bold; font-size: 0.85rem; padding: 5px 8px;
         }
 
-        /* الإطار الذهبي والصورة - نسخة نحيفة ومنسقة */
+        /* الإطار الذهبي المصغر */
         .hero-container { 
-            background: white; border: 1px solid var(--text-honey); padding: 6px; 
-            border-radius: 10px; animation: heartbeat 3s ease-in-out infinite; z-index: 10;
+            background: white; border: 1px solid var(--text-honey); padding: 5px; 
+            border-radius: 8px; animation: heartbeat 3s ease-in-out infinite; z-index: 10;
         }
         .profile-img { 
-            width: 65vw; max-width: 260px; 
-            height: auto; max-height: 45vh; 
-            object-fit: cover; border-radius: 5px; display: block;
+            width: 60vw; max-width: 240px; 
+            height: auto; max-height: 42vh; 
+            object-fit: cover; border-radius: 4px; display: block;
         }
 
         @keyframes heartbeat {
@@ -63,13 +63,41 @@
             50% { transform: scale(1.01); }
         }
 
-        /* الاسم والوصف - أحجام ناعمة */
-        .title-section { text-align: center; }
+        /* حاوية الاسم وزر من القلب بجانبه */
+        .title-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 360px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* زر من القلب في المكان الجديد (الرسمة الصفراء) */
+   .side-btn {
+    position: fixed; /* تم تغييره ليكون حر الحركة في الصفحة */
+    left: 20px;     /* يدفعه لليسار تماماً */
+    top: 55%;       /* يضعه بمحاذاة الاسم عمودياً */
+    background: var(--side-box-bg);
+    color: white;
+    padding: 8px 15px; 
+    border-radius: 12px;
+    text-decoration: none;
+    z-index: 1000; 
+    border: 1px solid var(--text-honey);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+        /* اسم جاز المصغر */
         h1 { 
             background: var(--caramel-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
-            font-weight: 900; font-size: 2.2rem; margin: 5px 0; 
+            font-weight: 900; font-size: 1.7rem; margin: 5px 0; 
         }
-        #statusMsg { font-weight: bold; opacity: 0.8; font-size: 0.85rem; margin: 0; }
+        #statusMsg { font-weight: bold; opacity: 0.8; font-size: 0.8rem; margin: 0; }
 
         /* العداد */
         .countdown-container { display: flex; gap: 8px; direction: ltr; z-index: 10; }
@@ -78,22 +106,15 @@
             border: 1px solid var(--soft-gold); padding: 8px; width: 55px; 
             background: white; border-radius: 8px; 
         }
-        .time-number { font-size: 1.4rem; font-weight: bold; color: var(--deep-mocha); }
-        .time-label { font-size: 0.65rem; color: var(--text-honey); }
+        .time-number { font-size: 1.3rem; font-weight: bold; color: var(--deep-mocha); }
+        .time-label { font-size: 0.6rem; color: var(--text-honey); }
 
         /* الأزرار */
         .message-trigger { 
             background: var(--caramel-linear); border: none; color: white; 
             padding: 12px 35px; border-radius: 50px; cursor: pointer; 
             font-weight: bold; font-family: 'Cairo'; transition: 0.3s;
-            font-size: 1rem; box-shadow: 0 4px 12px rgba(198, 142, 23, 0.25);
-        }
-
-        .side-btn {
-            position: absolute; left: 15px; bottom: 100px; 
-            background: var(--side-box-bg); color: white; padding: 8px 15px; 
-            border-radius: 12px; text-decoration: none; z-index: 1000; 
-            border: 1px solid var(--text-honey); display: flex; align-items: center; gap: 6px;
+            font-size: 0.95rem; box-shadow: 0 4px 12px rgba(198, 142, 23, 0.25);
         }
 
         /* النوافذ */
@@ -132,7 +153,11 @@
         <img src="jazbio (1).webp" class="profile-img">
     </div>
 
-    <div class="title-section">
+    <div class="title-wrapper">
+        <a href="fans.html" class="side-btn">
+            <span style="color: var(--text-honey);">❤️</span>
+            <span style="font-size: 0.7rem; font-weight: bold;">من القلب</span>
+        </a>
         <h1>Jaz Alenezi</h1>
         <p id="statusMsg">ميلاد جاز | حكاية نجمة تضيء السماء ✨</p>
     </div>
@@ -146,19 +171,16 @@
 
     <button class="message-trigger" onclick="openBox()">رسالة خبئت لكِ بحب</button>
 
-    <a href="fans.html" class="side-btn">
-        <span style="color: var(--text-honey);">❤️</span>
-        <span style="font-size: 0.75rem; font-weight: bold;">من القلب</span>
-    </a>
-
     <div id="messageBox" class="overlay">
         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border: 1px solid var(--text-honey); padding: 30px; width: 85%; max-width: 350px; border-radius: 20px; text-align: center;">
             <span onclick="closeBox()" style="position: absolute; top: 15px; right: 20px; font-size: 28px; color: var(--text-honey); cursor: pointer;">&times;</span>
-        <h2 style="color: var(--text-honey); margin-bottom: 15px;">إلى جاز.. ✨</h2>
+          <h2 style="color: var(--text-honey); margin-bottom: 15px;">إلى جاز.. ✨</h2>
             <div style="line-height: 1.8; color: var(--deep-mocha); font-size: 1.05rem;">
                 <p>إلى النجمة التي أضاءت <br><strong>خشبة المسرح والشاشة..</strong> <br>اليوم نضيء لكِ قلوبنا حباً وتقديراً.</p>
+                
                 <hr style="border: 0; border-top: 1px solid var(--soft-gold); margin: 15px auto; width: 50%;">
                 <p style="font-weight: bold; background: var(--caramel-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">ميلادكِ عيدٌ للجمال، <br>وحكايةُ بطلتها أنتِ.. <br>دمتِ بخير يا جاز</p>
+                
             </div>
         </div>
     </div>
@@ -173,7 +195,6 @@
         var showTime = new Date("May 5, 2026 23:00:00").getTime();
         var confettiTimer = null;
 
-        // وظيفة القصاصات الذهبية
         function shootConfetti() {
             var colors = ['#C68E17', '#E3A857', '#7B3F00', '#FFFFFF'];
             confetti({ particleCount: 40, angle: 60, spread: 55, origin: { x: 0, y: 0.6 }, colors: colors });
@@ -216,7 +237,7 @@
                 if (party.paused) {
                     intro.pause();
                     party.play();
-                    shootConfetti(); // إطلاق القصاصات
+                    shootConfetti(); 
                     if (!confettiTimer) confettiTimer = setInterval(shootConfetti, 3000);
                 }
             } else if (now >= showTime) {
