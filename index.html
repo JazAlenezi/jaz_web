@@ -27,14 +27,14 @@
             margin: 0;
             display: flex; flex-direction: column; align-items: center;
             min-height: 100vh; overflow-x: hidden;
-            position: relative; padding-bottom: 20px; /* تقليل البادينج السفلي */
+            position: relative; padding-bottom: 20px;
         }
 
         /* القائمة العلوية */
         .nav-links { 
             position: relative; top: 10px; display: flex; gap: 10px; 
             z-index: 1000; flex-wrap: wrap; justify-content: center; 
-            width: 100%; margin-bottom: 20px; padding: 0; list-style: none; 
+            width: 100%; margin-bottom: 15px; padding: 0; list-style: none; 
         }
         .nav-links li a { 
             color: var(--deep-mocha); text-decoration: none; opacity: 0.7; 
@@ -55,27 +55,31 @@
         }
         .dropdown:hover .dropdown-content { display: block; }
 
-        /* الصورة والأنيميشن - تعديل الارتفاع للجوال */
+        /* الصورة والأنيميشن - تعديل الإطار الذهبي ليكون متساوياً وتكبير الصورة */
         .hero-container { 
-            background: white; border: 1px solid var(--text-honey); padding: 6px; 
+            background: white; border: 1px solid var(--text-honey); 
+            padding: 8px; /* مسافة متساوية من كل الجهات */
             border-radius: 10px; animation: heartbeat 3s ease-in-out infinite; z-index: 10;
-            margin-top: 10px;
+            margin-top: 5px;
+            display: flex; align-items: center; justify-content: center;
         }
         .profile-img { 
             width: 100%; 
-            max-width: 280px; 
+            max-width: 320px; /* تكبير العرض ليعطي فخامة */
             height: auto; 
-            max-height: 35vh; /* تضمن أن الصورة لا تأخذ أكثر من 35% من طول الشاشة */
+            max-height: 42vh; /* زيادة الارتفاع المسموح لتبدو الصورة أكبر */
             object-fit: cover; 
             border-radius: 4px; 
+            display: block; 
+            margin: 0; /* إلغاء أي هوامش تلقائية قد تسبب عدم التساوي */
         }
 
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
+            50% { transform: scale(1.02); }
         }
 
-        /* العداد - تعديل المسافات */
+        /* العداد */
         .countdown-container { display: flex; gap: 8px; direction: ltr; margin: 10px 0; z-index: 10; }
         .time-block { 
             display: flex; flex-direction: column; align-items: center; 
@@ -103,15 +107,15 @@
 
         footer { margin-top: auto; padding: 15px; font-size: 0.65rem; opacity: 0.6; z-index: 10; text-align: center; }
 
-        /* تعديلات مخصصة للجوال فقط لتوفير المساحة */
-        @media (max-height: 700px) {
-            h1 { font-size: 1.8rem !important; margin: 5px 0 !important; }
+        /* تعديلات الجوال لضمان ظهور كل شيء في الواجهة */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.9rem !important; margin: 8px 0 !important; }
             .nav-links { margin-bottom: 10px; top: 5px; }
-            #statusMsg { font-size: 0.8rem; margin: 5px 0; }
-            .profile-img { max-height: 30vh; }
-            .countdown-container { margin: 5px 0; }
-            .time-block { padding: 5px; width: 50px; }
-            .time-number { font-size: 1.2rem; }
+            #statusMsg { font-size: 0.75rem; margin: 5px 0; }
+            .profile-img { max-height: 40vh; }
+            .countdown-container { margin: 8px 0; }
+            .time-block { padding: 6px; width: 52px; }
+            .time-number { font-size: 1.3rem; }
         }
     </style>
 </head>
