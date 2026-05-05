@@ -27,18 +27,18 @@
             margin: 0;
             display: flex; flex-direction: column; align-items: center;
             min-height: 100vh; overflow-x: hidden;
-            position: relative; padding-bottom: 50px;
+            position: relative; padding-bottom: 20px; /* تقليل البادينج السفلي */
         }
 
         /* القائمة العلوية */
         .nav-links { 
-            position: relative; top: 20px; display: flex; gap: 15px; 
+            position: relative; top: 10px; display: flex; gap: 10px; 
             z-index: 1000; flex-wrap: wrap; justify-content: center; 
-            width: 100%; margin-bottom: 40px; padding: 0; list-style: none; 
+            width: 100%; margin-bottom: 20px; padding: 0; list-style: none; 
         }
         .nav-links li a { 
             color: var(--deep-mocha); text-decoration: none; opacity: 0.7; 
-            transition: 0.3s; font-weight: bold; font-size: 0.8rem; padding: 5px 10px;
+            transition: 0.3s; font-weight: bold; font-size: 0.8rem; padding: 5px 8px;
         }
         .nav-links li a:hover { opacity: 1; color: var(--text-honey); }
 
@@ -55,34 +55,42 @@
         }
         .dropdown:hover .dropdown-content { display: block; }
 
-        /* الصورة والأنيميشن */
+        /* الصورة والأنيميشن - تعديل الارتفاع للجوال */
         .hero-container { 
-            background: white; border: 1px solid var(--text-honey); padding: 8px; 
+            background: white; border: 1px solid var(--text-honey); padding: 6px; 
             border-radius: 10px; animation: heartbeat 3s ease-in-out infinite; z-index: 10;
-            margin-top: 20px;
+            margin-top: 10px;
         }
-        .profile-img { width: 300px; height: 400px; object-fit: cover; border-radius: 4px; }
+        .profile-img { 
+            width: 100%; 
+            max-width: 280px; 
+            height: auto; 
+            max-height: 35vh; /* تضمن أن الصورة لا تأخذ أكثر من 35% من طول الشاشة */
+            object-fit: cover; 
+            border-radius: 4px; 
+        }
 
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.03); }
         }
 
-        /* العداد */
-        .countdown-container { display: flex; gap: 12px; direction: ltr; margin: 20px 0; z-index: 10; }
+        /* العداد - تعديل المسافات */
+        .countdown-container { display: flex; gap: 8px; direction: ltr; margin: 10px 0; z-index: 10; }
         .time-block { 
             display: flex; flex-direction: column; align-items: center; 
-            border: 1px solid var(--soft-gold); padding: 10px; width: 60px; 
+            border: 1px solid var(--soft-gold); padding: 8px; width: 55px; 
             background: white; border-radius: 8px; 
         }
-        .time-number { font-size: 1.6rem; font-weight: bold; color: var(--deep-mocha); }
-        .time-label { font-size: 0.65rem; color: var(--text-honey); }
+        .time-number { font-size: 1.4rem; font-weight: bold; color: var(--deep-mocha); }
+        .time-label { font-size: 0.6rem; color: var(--text-honey); }
 
         /* الأزرار والنوافذ */
         .message-trigger, .modal-btn { 
             background: var(--caramel-linear); border: none; color: white; 
-            padding: 12px 30px; border-radius: 50px; cursor: pointer; 
+            padding: 10px 25px; border-radius: 50px; cursor: pointer; 
             font-weight: bold; font-family: 'Cairo'; transition: 0.3s;
+            margin-bottom: 10px;
         }
         .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(75, 54, 33, 0.4); z-index: 2000; backdrop-filter: blur(8px); }
         
@@ -93,7 +101,18 @@
             align-items: center; justify-content: center; color: white; text-align: center;
         }
 
-        footer { margin-top: auto; padding: 20px; font-size: 0.7rem; opacity: 0.6; z-index: 10; text-align: center; }
+        footer { margin-top: auto; padding: 15px; font-size: 0.65rem; opacity: 0.6; z-index: 10; text-align: center; }
+
+        /* تعديلات مخصصة للجوال فقط لتوفير المساحة */
+        @media (max-height: 700px) {
+            h1 { font-size: 1.8rem !important; margin: 5px 0 !important; }
+            .nav-links { margin-bottom: 10px; top: 5px; }
+            #statusMsg { font-size: 0.8rem; margin: 5px 0; }
+            .profile-img { max-height: 30vh; }
+            .countdown-container { margin: 5px 0; }
+            .time-block { padding: 5px; width: 50px; }
+            .time-number { font-size: 1.2rem; }
+        }
     </style>
 </head>
 <body>
@@ -119,11 +138,11 @@
     </ul>
 
     <div class="hero-container">
-        <img src="jazbio.webp" class="profile-img">
+        <img src="jazbio (1).webp" class="profile-img">
     </div>
 
-    <h1 style="background: var(--caramel-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; font-size: 2.5rem; margin: 15px 0;">Jaz Alenezi</h1>
-    <p id="statusMsg" style="font-weight: bold; opacity: 0.8;">ميلاد جاز | حكاية نجمة تضيء السماء ✨</p>
+    <h1 style="background: var(--caramel-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; font-size: 2.5rem; margin: 10px 0;">Jaz Alenezi</h1>
+    <p id="statusMsg" style="font-weight: bold; opacity: 0.8; margin: 5px 0;">ميلاد جاز | حكاية نجمة تضيء السماء ✨</p>
 
     <div id="countdownWrapper">
         <div class="countdown-container">
@@ -134,25 +153,20 @@
         </div>
     </div>
 
-    <a href="fans.html" style="position: fixed; left: 10px; bottom: 200px; background: var(--side-box-bg); color: white; padding: 10px 15px; border-radius: 12px; text-decoration: none; z-index: 1000; border: 1px solid var(--text-honey); display: flex; align-items: center; gap: 8px;">
+    <a href="fans.html" style="position: fixed; left: 10px; bottom: 80px; background: var(--side-box-bg); color: white; padding: 8px 12px; border-radius: 12px; text-decoration: none; z-index: 1000; border: 1px solid var(--text-honey); display: flex; align-items: center; gap: 8px;">
         <span style="color: var(--text-honey);">❤️</span>
-        <span style="font-size: 0.8rem; font-weight: bold;">من القلب</span>
+        <span style="font-size: 0.7rem; font-weight: bold;">من القلب</span>
     </a>
 
     <button class="message-trigger" onclick="openBox()">رسالة خبئت لكِ بحب</button>
 
     <div id="messageBox" class="overlay">
-        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border: 1px solid var(--text-honey); padding: 35px; width: 85%; max-width: 380px; border-radius: 20px; text-align: center;">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border: 1px solid var(--text-honey); padding: 30px; width: 85%; max-width: 380px; border-radius: 20px; text-align: center;">
             <span onclick="closeBox()" style="position: absolute; top: 15px; right: 20px; font-size: 28px; color: var(--text-honey); cursor: pointer;">&times;</span>
-           
-            
-           
-              
-            
-            <h2 style="color: var(--text-honey); margin-bottom: 15px;">إلى جاز.. ✨</h2>
-            <div style="line-height: 1.8; color: var(--deep-mocha); font-size: 1.05rem;">
+            <h2 style="color: var(--text-honey); margin-bottom: 10px;">إلى جاز.. ✨</h2>
+            <div style="line-height: 1.6; color: var(--deep-mocha); font-size: 1rem;">
                 <p>إلى النجمة التي أضاءت <br><strong>خشبة المسرح والشاشة..</strong> <br>اليوم نضيء لكِ قلوبنا حباً وتقديراً.</p>
-                <hr style="border: 0; border-top: 1px solid var(--soft-gold); margin: 15px auto; width: 50%;">
+                <hr style="border: 0; border-top: 1px solid var(--soft-gold); margin: 10px auto; width: 50%;">
                 <p style="font-weight: bold; background: var(--caramel-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">ميلادكِ عيدٌ للجمال، <br>وحكايةُ بطلتها أنتِ.. <br>دمتِ بخير يا جاز</p>
             </div>
         </div>
@@ -161,7 +175,7 @@
     <audio id="introAudio" src="الموسيقى.mp3" preload="auto" loop></audio>
     <audio id="birthdayAudio" src="غنو لحبيبي.mp3" preload="auto" loop></audio>
 
- <footer>جميع الحقوق محفوظة لـ JAZ 2026 ©️ | تم التطوير بواسطة <a href="https://www.tiktok.com/@shx_ab1" target="_blank" style="color: var(--text-honey); text-decoration: none; font-weight: bold;">SHOUQ🤎🇸🇦</a></footer>
+    <footer>جميع الحقوق محفوظة لـ JAZ 2026 ©️ | تم التطوير بواسطة <a href="https://www.tiktok.com/@shx_ab1" target="_blank" style="color: var(--text-honey); text-decoration: none; font-weight: bold;">SHOUQ🤎🇸🇦</a></footer>
 
     <script>
         var birthdayDate = new Date("May 6, 2026 00:00:00").getTime();
