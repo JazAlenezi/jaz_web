@@ -9,8 +9,8 @@
     <style>
         :root {
             --main-bg: #fdfbf9; 
-            --deep-mocha: #1e4b7a; /* تم التغيير للأزرق الملكي */
-            --blue-linear: linear-gradient(135deg, #1e4b7a 0%, #4a90e2 50%, #16365a 100%); /* التدرج الأزرق الجديد */
+            --deep-mocha: #1e4b7a; 
+            --blue-linear: linear-gradient(135deg, #1e4b7a 0%, #4a90e2 50%, #16365a 100%); 
             --text-blue: #1e4b7a;
             --soft-blue: rgba(30, 75, 122, 0.1);
         }
@@ -26,6 +26,7 @@
             padding-bottom: 50px;
         }
 
+        
         /* --- شريط التنقل --- */
         .nav-links { 
             position: relative; 
@@ -138,9 +139,9 @@
             margin-bottom: 15px;
         }
 
-        /* تعديل خاص لصورة العناية لإظهار الوجه كاملاً */
+        /* تم تعديل موضع الصورة لإخفاء الفراغ العلوي والبدء من منبت الشعر */
         .skincare-img {
-            object-position: 20% top center; /* إنزال الصورة لإظهار الوجه من الأعلى */
+            object-position: center 20%; 
         }
 
         .category-card h3 { 
@@ -199,7 +200,6 @@
         </a>
 
         <a href="skincare.html" class="category-card">
-            <!-- إضافة كلاس skincare-img للتحكم في موضع الوجه -->
             <img src="عناية.webp" alt="قسم العناية" class="skincare-img">
             <h3>قسم العناية</h3>
             <span class="btn-go">تصفح المجموعة ✨</span>

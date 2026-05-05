@@ -9,10 +9,10 @@
     <style>
         :root { 
             --main-bg: #fdfbf9; 
-            --deep-mocha: #4B3621; 
-            --caramel-linear: linear-gradient(135deg, #C68E17 0%, #E3A857 50%, #7B3F00 100%);
-            --text-honey: #C68E17;
-            --soft-gold: rgba(198, 142, 23, 0.1);
+            --deep-mocha: #1e4b7a; /* تم التغيير للأزرق الداكن */
+            --blue-linear: linear-gradient(135deg, #1e4b7a 0%, #4a90e2 50%, #16365a 100%);
+            --text-blue: #1e4b7a;
+            --soft-blue: rgba(30, 75, 122, 0.1);
         }
 
         body { 
@@ -28,7 +28,7 @@
         body::after {
             content: ""; position: fixed; top: 0; left: 50%; transform: translateX(-50%);
             width: 100%; height: 500px;
-            background: radial-gradient(circle at top, rgba(198, 142, 23, 0.08) 0%, transparent 70%);
+            background: radial-gradient(circle at top, rgba(30, 75, 122, 0.08) 0%, transparent 70%);
             pointer-events: none; z-index: 1;
         }
 
@@ -43,41 +43,41 @@
             z-index: 10; flex-wrap: wrap; justify-content: center; width: 100%; margin-bottom: 50px;
         }
         .nav-links a { color: var(--deep-mocha); text-decoration: none; opacity: 0.7; transition: 0.3s; font-weight: bold; font-size: 0.75rem; }
-        .nav-links a:hover { opacity: 1; color: var(--text-honey); }
+        .nav-links a:hover { opacity: 1; color: var(--text-blue); }
 
         .content { z-index: 10; padding: 20px; width: 90%; max-width: 500px; text-align: center; }
 
         .page-title { 
-            background: var(--caramel-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+            background: var(--blue-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
             font-size: 2.2rem; margin-bottom: 30px; font-weight: 700;
         }
         
         .write-box { 
-            background: white; border: 1px solid var(--soft-gold); padding: 30px; 
-            margin: 20px 0; border-radius: 20px; box-shadow: 0 10px 30px rgba(75, 54, 33, 0.05);
+            background: white; border: 1px solid var(--soft-blue); padding: 30px; 
+            margin: 20px 0; border-radius: 20px; box-shadow: 0 10px 30px rgba(30, 75, 122, 0.05);
             transition: 0.4s; position: relative; z-index: 10;
         }
 
         .fan-form { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
 
         .input-field {
-            background: #fdfdfd; border: 1px solid rgba(198, 142, 23, 0.2);
+            background: #fdfdfd; border: 1px solid rgba(30, 75, 122, 0.2);
             border-radius: 10px; padding: 15px; color: var(--deep-mocha);
             font-family: 'Cairo'; font-size: 0.9rem; outline: none; transition: 0.3s;
         }
 
         .send-btn { 
-            background: var(--caramel-linear); color: white; padding: 15px; 
+            background: var(--blue-linear); color: white; padding: 15px; 
             border-radius: 50px; font-weight: bold; border: none; cursor: pointer;
             margin-top: 10px; font-size: 1rem; transition: 0.4s; font-family: 'Cairo';
-            box-shadow: 0 4px 15px rgba(198, 142, 23, 0.3);
+            box-shadow: 0 4px 15px rgba(30, 75, 122, 0.3);
         }
 
         .wall { display: flex; flex-direction: column; gap: 20px; margin-top: 40px; z-index: 10; width: 100%; }
 
         .fan-card { 
             background: white; padding: 20px; border-radius: 15px; 
-            border-right: 5px solid var(--text-honey); text-align: right; 
+            border-right: 5px solid var(--text-blue); text-align: right; 
             box-shadow: 0 5px 15px rgba(0,0,0,0.03); animation: fadeIn 0.5s ease-in;
             margin-bottom: 10px;
         }
@@ -85,7 +85,7 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .fan-card p { margin-bottom: 10px; font-size: 0.95rem; line-height: 1.7; }
-        .fan-card b { color: var(--text-honey); font-size: 0.8rem; }
+        .fan-card b { color: var(--text-blue); font-size: 0.8rem; }
 
         footer {
             margin-top: auto; padding: 20px; font-size: 0.7rem;
@@ -98,8 +98,7 @@
 
     <nav class="nav-links">
         <a href="index.html">الرئيسية</a>
-
-        <a href="fans.html" style="color: var(--text-honey);">من القلب</a>
+        <a href="fans.html" style="color: var(--text-blue);">من القلب</a>
     </nav>
 
     <div class="content">
@@ -121,13 +120,12 @@
         </div>
     </div>
 
-   <footer>جميع الحقوق محفوظة لـ JAZ 2026 © | تم التطوير بواسطة <a href="https://www.tiktok.com/@shx_ab1" target="_blank" style="color: var(--text-honey); text-decoration: none; font-weight: bold;">SHOUQ🤎🇸🇦</a></footer>
+   <footer>جميع الحقوق محفوظة لـ JAZ 2026 ©️ | تم التطوير بواسطة <a href="https://www.tiktok.com/@shx_ab1" target="_blank" style="color: var(--text-blue); text-decoration: none; font-weight: bold;">SHOUQ💙🇸🇦</a></footer>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
     <script>
-        // سيتم استبدال هذه البيانات بعد فتح الحساب
        const firebaseConfig = {
             apiKey: "AIzaSyA17avzlohOby3GJAukQzbiRixmK9HX_s",
             authDomain: "jaz-fans.firebaseapp.com",
@@ -145,14 +143,11 @@
         function saveMessage() {
             const name = document.getElementById('fanName').value;
             const message = document.getElementById('fanMsg').value;
-            
-            // قائمة الكلمات المرفوضة - يمكنك إضافة المزيد هنا
             const badWords = ["تسب", "غبي", "سيء"]; 
-            
             const hasBadWord = badWords.some(word => message.includes(word) || name.includes(word));
 
             if(hasBadWord) {
-                alert("لطفاً، اجعلي رسالتكِ مليئة بالحب والإيجابية لتليق بجاز 🤎");
+                alert("لطفاً، اجعلي رسالتكِ مليئة بالحب والإيجابية لتليق بجاز 💙");
                 return; 
             }
 
@@ -167,7 +162,7 @@
                 document.getElementById('fanMsg').value = '';
                 alert("تم إرسال رسالتكِ بنجاح ✨");
             } else {
-                alert("لطفاً اكتبي اسمك ورسالتك 🤎");
+                alert("لطفاً اكتبي اسمك ورسالتك 💙");
             }
         }
 
