@@ -112,6 +112,44 @@
             font-weight: 700;
             text-align: center;
         }
+        /* --- تنسيق القائمة المنسدلة لـ "أعمالي" --- */
+.nav-links li { 
+    position: relative; 
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    min-width: 140px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    z-index: 1001;
+    padding: 10px 0;
+    border: 1px solid var(--soft-gold);
+}
+
+.dropdown-content a {
+    color: var(--deep-mocha) !important;
+    padding: 10px 15px;
+    display: block;
+    font-size: 0.85rem;
+    text-decoration: none;
+    text-align: right;
+    opacity: 1 !important;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--soft-gold);
+    color: var(--text-honey) !important;
+}
+
+/* أمر إظهار القائمة عند ملامسة الماوس */
+.nav-links li:hover .dropdown-content {
+    display: block;
+}
 
         .profession { 
             color: var(--deep-mocha); 
@@ -182,12 +220,19 @@
 <body>
     <div class="watermark">JAZ BLOGG</div>
 
-    <ul class="nav-links">
-        <li><a href="index.html">الرئيسية</a></li>
-        <li><a href="#">أعمالي</a></li>
-        <li><a href="BOUTIQAAT.html">مختارات جاز</a></li>
-        <li><a href="business.html" class="active">تواصل</a></li>
-    </ul>
+   <ul class="nav-links">
+    <li><a href="index.html">الرئيسية</a></li>
+    <li style="position: relative;">
+        <a href="#" style="opacity: 1;">أعمالي ▾</a>
+        <!-- إضافة الروابط المنسدلة هنا -->
+        <div class="dropdown-content">
+            <a href="drama.html">الدراما</a>
+            <a href="theater.html">المسرح</a>
+        </div>
+    </li>
+    <li><a href="BOUTIQAAT.html">مختارات جاز</a></li>
+    <li><a href="business.html" style="color: var(--text-honey);">تواصل</a></li>
+</ul>
 
     <div class="content">
         <div class="biz-card">
