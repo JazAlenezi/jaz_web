@@ -9,10 +9,10 @@
     <style>
         :root {
             --main-bg: #fdfbf9; 
-            --deep-mocha: #4B3621; 
-            --caramel-linear: linear-gradient(135deg, #C68E17 0%, #E3A857 50%, #7B3F00 100%);
-            --text-honey: #C68E17;
-            --soft-gold: rgba(198, 142, 23, 0.1);
+            --deep-mocha: #1e4b7a; /* تم التغيير للأزرق */
+            --blue-linear: linear-gradient(135deg, #1e4b7a 0%, #4a90e2 50%, #16365a 100%); /* تدرج أزرق ملكي */
+            --text-blue: #1e4b7a;
+            --soft-blue: rgba(30, 75, 122, 0.1);
         }
 
         body {
@@ -24,15 +24,14 @@
             min-height: 100vh; position: relative; overflow-x: hidden;
         }
 
-        /* --- شريط التنقل الموحد بعد التعديل --- */
         .nav-links-container { 
             position: relative; 
-            top: 40px; /* تم تعديل المسافة لتكون تحت كلمة الرئيسية */
+            top: 40px; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
             width: 100%;
-            margin-bottom: 60px; /* زيادة الهامش للموازنة */
+            margin-bottom: 60px; 
             z-index: 1000;
         }
         
@@ -62,10 +61,9 @@
 
         .nav-text-links a:hover, .dropdown:hover .dropdown-trigger, .active-link { 
             opacity: 1; 
-            color: var(--text-honey); 
+            color: var(--text-blue); 
         }
 
-        /* المنسدلة */
         .dropdown-content {
             display: none; 
             position: absolute;
@@ -74,7 +72,7 @@
             background-color: white; 
             min-width: 130px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
-            border: 1px solid var(--soft-gold);
+            border: 1px solid var(--soft-blue);
             border-radius: 10px;
             padding: 8px 0;
             margin-top: 5px;
@@ -91,15 +89,12 @@
         }
 
         .dropdown-content a:hover {
-            background-color: var(--soft-gold);
-            color: var(--text-honey) !important;
+            background-color: var(--soft-blue);
+            color: var(--text-blue) !important;
         }
 
         .dropdown:hover .dropdown-content { display: block; }
 
-        /* تم حذف كود زر الرجوع (back-btn) */
-
-        /* المحتوى */
         .content-wrapper { 
             z-index: 10; 
             padding: 20px; 
@@ -118,21 +113,21 @@
 
         .card { 
             background: white;
-            border: 1px solid var(--soft-gold); 
+            border: 1px solid var(--soft-blue); 
             padding: 10px; 
             border-radius: 12px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            box-shadow: 0 10px 25px rgba(75, 54, 33, 0.05);
+            box-shadow: 0 10px 25px rgba(30, 75, 122, 0.05);
             transition: 0.4s;
             position: relative;
         }
 
-        .card:hover { transform: translateY(-8px); border-color: var(--text-honey); }
+        .card:hover { transform: translateY(-8px); border-color: var(--text-blue); }
 
         .year-tag {
-            position: absolute; top: -10px; right: 10px; background: var(--caramel-linear);
+            position: absolute; top: -10px; right: 10px; background: var(--blue-linear);
             color: white; font-size: 0.7rem; padding: 2px 12px; border-radius: 20px; font-weight: bold;
         }
 
@@ -150,32 +145,24 @@
     <div class="watermark">DRAMA</div>
 
     <nav class="nav-links-container">
-        <!-- تم حذف رابط الرجوع من هنا -->
         <ul class="nav-text-links">
             <li><a href="index.html">الرئيسية</a></li>
             <li class="dropdown">
-                <button class="dropdown-trigger active-link" style="color: var(--text-honey); opacity: 1;">أعمالي ▾</button>
+                <button class="dropdown-trigger active-link" style="color: var(--text-blue); opacity: 1;">أعمالي ▾</button>
                 <div class="dropdown-content">
                     <a href="theater.html">مسرح</a>
                 </div>
             </li>
-            <li class="dropdown">
-                <button class="dropdown-trigger">مختارات جاز ▾</button>
-                <div class="dropdown-content">
-                    <a href="makeup.html">مكياج</a>
-                    <a href="perfumes.html">عطور</a>
-                    <a href="skincare.html">عناية</a>
-                    <a href="BOUTIQAAT.html">الكل</a>
-                </div>
-            </li>
+            <!-- تم حذف القائمة المنسدلة وتحويلها لرابط مباشر كما طلبتِ -->
+            <li><a href="BOUTIQAAT.html">مختارات جاز</a></li>
             <li><a href="business.html">تواصل</a></li>
         </ul>
     </nav>
 
     <div class="content-wrapper">
         <div class="header-section">
-            <h1 style="background: var(--caramel-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2rem; margin: 0;">دراما</h1>
-            <p style="font-weight: bold; opacity: 0.8; margin-top: 10px;">بصمة درامية في ذاكرة الشاشة الخليجية</p>
+            <h1 style="background: var(--blue-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2rem; margin: 0;">دراما</h1>
+            <p style="font-weight: bold; opacity: 0.8; margin-top: 10px; color: var(--text-blue);">بصمة درامية في ذاكرة الشاشة الخليجية</p>
         </div>
         
         <div class="grid">
@@ -204,7 +191,7 @@
 
     <footer>
         جميع الحقوق محفوظة لـ JAZ 2026 ©️ | تم التطوير بواسطة 
-        <a href="https://www.tiktok.com/@shx_ab1" target="_blank" style="color: var(--text-honey); text-decoration: none; font-weight: bold;">SHOUQ🤎🇸🇦</a>
+        <a href="https://www.tiktok.com/@shx_ab1" target="_blank" style="color: var(--text-blue); text-decoration: none; font-weight: bold;">SHOUQ💙🇸🇦</a>
     </footer>
 </body>
 </html>

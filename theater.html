@@ -9,10 +9,10 @@
     <style>
         :root {
             --main-bg: #fdfbf9; 
-            --deep-mocha: #4B3621; 
-            --caramel-linear: linear-gradient(135deg, #C68E17 0%, #E3A857 50%, #7B3F00 100%);
-            --text-honey: #C68E17;
-            --soft-gold: rgba(198, 142, 23, 0.1);
+            --deep-mocha: #1e4b7a; /* الأزرق الملكي */
+            --blue-linear: linear-gradient(135deg, #1e4b7a 0%, #4a90e2 50%, #16365a 100%); /* التدرج المعتمد */
+            --text-blue: #1e4b7a;
+            --soft-blue: rgba(30, 75, 122, 0.1);
         }
 
         body {
@@ -24,10 +24,10 @@
             min-height: 100vh; position: relative; overflow-x: hidden;
         }
 
-        /* --- شريط التنقل الموحد بعد التعديل --- */
+        /* --- شريط التنقل --- */
         .nav-links-container { 
             position: relative; 
-            top: 40px; /* المسافة الموحدة الجديدة */
+            top: 40px; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
@@ -62,7 +62,7 @@
 
         .nav-text-links a:hover, .dropdown:hover .dropdown-trigger, .active-link { 
             opacity: 1; 
-            color: var(--text-honey); 
+            color: var(--text-blue); 
         }
 
         .dropdown-content {
@@ -73,7 +73,7 @@
             background-color: white; 
             min-width: 130px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
-            border: 1px solid var(--soft-gold);
+            border: 1px solid var(--soft-blue);
             border-radius: 10px;
             padding: 8px 0;
             margin-top: 5px;
@@ -90,37 +90,35 @@
         }
 
         .dropdown-content a:hover {
-            background-color: var(--soft-gold);
-            color: var(--text-honey) !important;
+            background-color: var(--soft-blue);
+            color: var(--text-blue) !important;
         }
 
         .dropdown:hover .dropdown-content { display: block; }
 
-        /* تم حذف زر الرجوع (back-btn) */
-
         /* المحتوى */
         .content { z-index: 10; padding: 20px; width: 95%; max-width: 500px; text-align: center; margin-top: 20px; }
-        .header-title h1 { background: var(--caramel-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.2rem; margin: 0; }
+        .header-title h1 { background: var(--blue-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.2rem; margin: 0; }
         .subtitle { color: var(--deep-mocha); font-size: 0.9rem; margin-bottom: 40px; opacity: 0.7; font-weight: bold; }
 
         .theater-grid { display: grid; grid-template-columns: 1fr; gap: 20px; justify-items: center; }
 
         .theater-card {
             background: white;
-            border: 1px solid var(--soft-gold);
+            border: 1px solid var(--soft-blue);
             padding: 12px;
             border-radius: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            box-shadow: 0 10px 25px rgba(75, 54, 33, 0.05);
+            box-shadow: 0 10px 25px rgba(30, 75, 122, 0.05);
             transition: 0.4s ease;
             position: relative;
             width: 100%;
             max-width: 300px;
         }
 
-        .theater-card:hover { transform: translateY(-10px); border-color: var(--text-honey); }
+        .theater-card:hover { transform: translateY(-10px); border-color: var(--text-blue); }
 
         .image-container { width: 100%; height: 350px; border-radius: 10px; overflow: hidden; margin-bottom: 15px; }
         .image-container img { width: 100%; height: 100%; object-fit: cover; }
@@ -128,13 +126,13 @@
         .play-info h3 { color: var(--deep-mocha); font-size: 0.95rem; margin-bottom: 12px; font-weight: bold; }
 
         .booking-btn {
-            display: inline-block; padding: 10px 20px; background: var(--caramel-linear);
+            display: inline-block; padding: 10px 20px; background: var(--blue-linear);
             color: white; text-decoration: none; font-size: 0.8rem; font-weight: bold;
-            border-radius: 50px; box-shadow: 0 4px 15px rgba(198, 142, 23, 0.2);
+            border-radius: 50px; box-shadow: 0 4px 15px rgba(30, 75, 122, 0.2);
         }
 
         .year-tag {
-            position: absolute; top: -10px; right: 15px; background: var(--caramel-linear);
+            position: absolute; top: -10px; right: 15px; background: var(--blue-linear);
             color: white; font-size: 0.7rem; padding: 2px 12px; border-radius: 20px; font-weight: bold;
         }
 
@@ -150,27 +148,20 @@
         <ul class="nav-text-links">
             <li><a href="index.html">الرئيسية</a></li>
             <li class="dropdown">
-                <button class="dropdown-trigger active-link" style="color: var(--text-honey); opacity: 1;">أعمالي ▾</button>
+                <button class="dropdown-trigger active-link" style="color: var(--text-blue); opacity: 1;">أعمالي ▾</button>
                 <div class="dropdown-content">
                     <a href="drama.html">دراما</a>
                 </div>
             </li>
-            <li class="dropdown">
-                <button class="dropdown-trigger">مختارات جاز ▾</button>
-                <div class="dropdown-content">
-                    <a href="makeup.html">مكياج</a>
-                    <a href="perfumes.html">عطور</a>
-                    <a href="skincare.html">عناية</a>
-                    <a href="BOUTIQAAT.html">الكل</a>
-                </div>
-            </li>
+            <!-- تم حذف القائمة المنسدلة وأصبح الرابط مباشراً -->
+            <li><a href="BOUTIQAAT.html">مختارات جاز</a></li>
             <li><a href="business.html">تواصل</a></li>
         </ul>
     </nav>
 
     <div class="content">
         <div class="header-title">
-            <h1 style="background: var(--caramel-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2rem; margin: 0;">مسرح</h1>
+            <h1 style="background: var(--blue-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2rem; margin: 0;">مسرح</h1>
         </div>
         <p class="subtitle">حيث تلتقي الأضواء بالشغف على المسرح ✨</p>
 
@@ -188,6 +179,6 @@
         </div>
     </div>
 
-    <footer>جميع الحقوق محفوظة لـ JAZ 2026 ©️ | تم التطوير بواسطة <a href="https://www.tiktok.com/@shx_ab1" target="_blank" style="color: var(--text-honey); text-decoration: none; font-weight: bold;">SHOUQ🤎🇸🇦</a></footer>
+    <footer>جميع الحقوق محفوظة لـ JAZ 2026 ©️ | تم التطوير بواسطة <a href="https://www.tiktok.com/@shx_ab1" target="_blank" style="color: var(--text-blue); text-decoration: none; font-weight: bold;">SHOUQ💙🇸🇦</a></footer>
 </body>
 </html>

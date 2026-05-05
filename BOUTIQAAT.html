@@ -9,10 +9,10 @@
     <style>
         :root {
             --main-bg: #fdfbf9; 
-            --deep-mocha: #4B3621; 
-            --caramel-linear: linear-gradient(135deg, #C68E17 0%, #E3A857 50%, #7B3F00 100%);
-            --text-honey: #C68E17;
-            --soft-gold: rgba(198, 142, 23, 0.1);
+            --deep-mocha: #1e4b7a; /* تم التغيير للأزرق الملكي */
+            --blue-linear: linear-gradient(135deg, #1e4b7a 0%, #4a90e2 50%, #16365a 100%); /* التدرج الأزرق الجديد */
+            --text-blue: #1e4b7a;
+            --soft-blue: rgba(30, 75, 122, 0.1);
         }
 
         body {
@@ -26,7 +26,7 @@
             padding-bottom: 50px;
         }
 
-        /* --- توحيد القائمة العلوية مع الرئيسية --- */
+        /* --- شريط التنقل --- */
         .nav-links { 
             position: relative; 
             top: 20px; 
@@ -49,26 +49,25 @@
             opacity: 0.7; 
             transition: 0.3s; 
             font-weight: bold; 
-            font-size: 0.8rem; /* نفس مقاس الرئيسية */
+            font-size: 0.8rem; 
             padding: 5px 10px;
             display: block;
         }
 
         .nav-links li a:hover, .nav-links li a.active { 
             opacity: 1; 
-            color: var(--text-honey); 
+            color: var(--text-blue); 
         }
 
-        /* --- تحسين القائمة المنسدلة لتكون واضحة جداً --- */
         .dropdown-content {
             display: none; 
             position: absolute;
             top: 100%; 
             right: 0;
-            background-color: white; /* خلفية بيضاء صريحة للوضوح */
+            background-color: white; 
             min-width: 130px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* ظل ناعم واحترافي */
-            border: 1px solid var(--soft-gold);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            border: 1px solid var(--soft-blue);
             border-radius: 10px;
             z-index: 1001;
             padding: 8px 0;
@@ -83,20 +82,20 @@
             text-align: right;
             font-size: 0.75rem;
             font-weight: bold;
-            opacity: 1 !important; /* إلغاء الشفافية داخل المنسدلة */
+            opacity: 1 !important; 
         }
 
         .dropdown-content a:hover {
-            background-color: var(--soft-gold);
-            color: var(--text-honey) !important;
+            background-color: var(--soft-blue);
+            color: var(--text-blue) !important;
         }
 
         .dropdown:hover .dropdown-content { display: block; }
 
-        /* --- تصميم محتوى الصفحة --- */
+        /* --- التصميم --- */
         .header-section { z-index: 10; text-align: center; margin-top: 30px; }
         .system-status { 
-            color: var(--deep-mocha); 
+            color: var(--text-blue); 
             font-size: 0.85rem; 
             margin-top: 10px; 
             margin-bottom: 30px; 
@@ -115,10 +114,10 @@
 
         .category-card { 
             background: white; 
-            border: 1px solid var(--soft-gold); 
+            border: 1px solid var(--soft-blue); 
             padding: 15px; 
             border-radius: 20px; 
-            box-shadow: 0 15px 35px rgba(75, 54, 33, 0.05); 
+            box-shadow: 0 15px 35px rgba(30, 75, 122, 0.05); 
             text-align: center; 
             text-decoration: none; 
             transition: 0.4s ease; 
@@ -127,8 +126,8 @@
 
         .category-card:hover { 
             transform: translateY(-10px); 
-            border-color: var(--text-honey); 
-            box-shadow: 0 20px 40px rgba(198, 142, 23, 0.1);
+            border-color: var(--text-blue); 
+            box-shadow: 0 20px 40px rgba(30, 75, 122, 0.1);
         }
 
         .category-card img { 
@@ -137,6 +136,11 @@
             object-fit: cover; 
             border-radius: 15px; 
             margin-bottom: 15px;
+        }
+
+        /* تعديل خاص لصورة العناية لإظهار الوجه كاملاً */
+        .skincare-img {
+            object-position: 20% top center; /* إنزال الصورة لإظهار الوجه من الأعلى */
         }
 
         .category-card h3 { 
@@ -148,7 +152,7 @@
 
         .btn-go { 
             display: inline-block; 
-            background: var(--caramel-linear); 
+            background: var(--blue-linear); 
             color: white; 
             padding: 10px 30px; 
             border-radius: 50px; 
@@ -179,7 +183,7 @@
                 <a href="theater.html">مسرح</a>
             </div>
         </li>
-        <li><a href="BOUTIQAAT.html" class="active" style="color: var(--text-honey); opacity: 1;">مختارات جاز</a></li>
+        <li><a href="BOUTIQAAT.html" class="active" style="color: var(--text-blue); opacity: 1;">مختارات جاز</a></li>
         <li><a href="business.html">تواصل</a></li>
     </ul>
 
@@ -195,7 +199,8 @@
         </a>
 
         <a href="skincare.html" class="category-card">
-            <img src="عناية.webp" alt="قسم العناية">
+            <!-- إضافة كلاس skincare-img للتحكم في موضع الوجه -->
+            <img src="عناية.webp" alt="قسم العناية" class="skincare-img">
             <h3>قسم العناية</h3>
             <span class="btn-go">تصفح المجموعة ✨</span>
         </a>
@@ -207,7 +212,7 @@
         </a>
     </div>
 
-    <footer>جميع الحقوق محفوظة لـ JAZ 2026 ©️ | تم التطوير بواسطة <a href="https://www.tiktok.com/@shx_ab1" target="_blank" style="color: var(--text-honey); text-decoration: none; font-weight: bold;">SHOUQ🤎🇸🇦</a></footer>
+    <footer>جميع الحقوق محفوظة لـ JAZ 2026 ©️ | تم التطوير بواسطة <a href="https://www.tiktok.com/@shx_ab1" target="_blank" style="color: var(--text-blue); text-decoration: none; font-weight: bold;">SHOUQ💙🇸🇦</a></footer>
 
 </body>
 </html>

@@ -10,17 +10,17 @@
     <style>
         :root {
             --main-bg: #fdfbf9; 
-            --deep-mocha: #4B3621; 
-            --caramel-linear: linear-gradient(135deg, #C68E17 0%, #E3A857 50%, #7B3F00 100%);
-            --text-honey: #C68E17;
-            --soft-gold: rgba(198, 142, 23, 0.1);
+            --deep-mocha: #1e4b7a; /* تم التغيير للأزرق */
+            --blue-linear: linear-gradient(135deg, #1e4b7a 0%, #4a90e2 50%, #16365a 100%); /* تدرج أزرق */
+            --text-blue: #1e4b7a;
+            --soft-blue: rgba(30, 75, 122, 0.1);
         }
 
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow: hidden; /* يمنع التمرير لضمان ظهور كل شيء */
+            overflow: hidden; 
             font-family: 'Cairo', sans-serif;
             background-color: var(--main-bg);
         }
@@ -64,7 +64,7 @@
             padding: 5px;
         }
 
-        .nav-links li a.active { color: var(--text-honey); opacity: 1; }
+        .nav-links li a.active { color: var(--text-blue); opacity: 1; }
 
         /* --- الحاوية الرئيسية --- */
         .content { 
@@ -79,32 +79,33 @@
 
         .biz-card {
             background: white;
-            border: 1px solid var(--soft-gold);
+            border: 1px solid var(--soft-blue);
             padding: 12px 15px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(75, 54, 33, 0.05);
+            box-shadow: 0 10px 30px rgba(30, 75, 122, 0.08);
             display: flex;
             flex-direction: column;
             gap: 6px;
         }
 
        .profile-image-container {
-    width: 100%;
-    height: 180px; /* قمنا بزيادة الارتفاع هنا ليعطي شكل المستطيل العريض */
-    border-radius: 15px;
-    overflow: hidden;
-    margin-bottom: 5px;
-}
+            width: 100%;
+            height: 180px; 
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 5px;
+            border: 1px solid var(--soft-blue);
+        }
 
        .profile-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover ;
-    object-position: center 30%; /* يمكنكِ تغييرها إلى center 20% إذا أردتِ رفع الصورة قليلاً */
-}
+            width: 100%;
+            height: 100%;
+            object-fit: cover ;
+            object-position: center 30%; 
+        }
 
         .page-title { 
-            background: var(--caramel-linear); 
+            background: var(--blue-linear); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
             font-size: 1.3rem; 
@@ -112,44 +113,43 @@
             font-weight: 700;
             text-align: center;
         }
-        /* --- تنسيق القائمة المنسدلة لـ "أعمالي" --- */
-.nav-links li { 
-    position: relative; 
-}
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: white;
-    min-width: 140px;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    z-index: 1001;
-    padding: 10px 0;
-    border: 1px solid var(--soft-gold);
-}
+        .nav-links li { 
+            position: relative; 
+        }
 
-.dropdown-content a {
-    color: var(--deep-mocha) !important;
-    padding: 10px 15px;
-    display: block;
-    font-size: 0.85rem;
-    text-decoration: none;
-    text-align: right;
-    opacity: 1 !important;
-}
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            min-width: 140px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 1001;
+            padding: 10px 0;
+            border: 1px solid var(--soft-blue);
+        }
 
-.dropdown-content a:hover {
-    background-color: var(--soft-gold);
-    color: var(--text-honey) !important;
-}
+        .dropdown-content a {
+            color: var(--deep-mocha) !important;
+            padding: 10px 15px;
+            display: block;
+            font-size: 0.85rem;
+            text-decoration: none;
+            text-align: right;
+            opacity: 1 !important;
+        }
 
-/* أمر إظهار القائمة عند ملامسة الماوس */
-.nav-links li:hover .dropdown-content {
-    display: block;
-}
+        .dropdown-content a:hover {
+            background-color: var(--soft-blue);
+            color: var(--text-blue) !important;
+        }
+
+        .nav-links li:hover .dropdown-content {
+            display: block;
+        }
 
         .profession { 
             color: var(--deep-mocha); 
@@ -160,7 +160,6 @@
             text-align: center;
         }
 
-        /* روابط التواصل تحت بعض */
         .social-links { 
             display: flex;
             flex-direction: column;
@@ -173,20 +172,24 @@
             justify-content: space-between;
             background: #fafafa;
             padding: 10px 15px;
-            border: 1px solid rgba(198, 142, 23, 0.05);
+            border: 1px solid rgba(30, 75, 122, 0.05);
             text-decoration: none; 
             color: var(--deep-mocha);
             font-size: 0.8rem;
             border-radius: 12px;
             font-weight: bold;
+            transition: 0.3s;
         }
 
-        .social-item i { color: var(--text-honey); font-size: 1.1rem; }
+        .social-item:hover {
+            background: var(--soft-blue);
+        }
 
-        /* زر البريد الإلكتروني */
+        .social-item i { color: var(--text-blue); font-size: 1.1rem; }
+
         .email-btn {
             margin-top: 10px; 
-            background: var(--caramel-linear);
+            background: var(--blue-linear);
             color: white; 
             padding: 12px; 
             text-align: center;
@@ -194,7 +197,7 @@
             font-weight: bold; 
             border-radius: 50px;
             font-size: 0.85rem;
-            box-shadow: 0 5px 15px rgba(198, 142, 23, 0.2);
+            box-shadow: 0 5px 15px rgba(30, 75, 122, 0.2);
             width: 100%;
             display: block;
             box-sizing: border-box;
@@ -208,7 +211,6 @@
             opacity: 0.7;
         }
 
-        /* لضمان الملاءمة على الشاشات الصغير جداً (مثل iPhone SE) */
         @media screen and (max-height: 700px) {
             .profile-image-container { height: 110px; }
             .social-item { padding: 7px 12px; font-size: 0.75rem; }
@@ -224,14 +226,13 @@
     <li><a href="index.html">الرئيسية</a></li>
     <li style="position: relative;">
         <a href="#" style="opacity: 1;">أعمالي ▾</a>
-        <!-- إضافة الروابط المنسدلة هنا -->
         <div class="dropdown-content">
             <a href="drama.html">الدراما</a>
             <a href="theater.html">المسرح</a>
         </div>
     </li>
     <li><a href="BOUTIQAAT.html">مختارات جاز</a></li>
-    <li><a href="business.html" style="color: var(--text-honey);">تواصل</a></li>
+    <li><a href="business.html" style="color: var(--text-blue);">تواصل</a></li>
 </ul>
 
     <div class="content">

@@ -9,10 +9,10 @@
     <style>
         :root {
             --main-bg: #fdfbf9; 
-            --deep-mocha: #4B3621; 
-            --caramel-linear: linear-gradient(135deg, #C68E17 0%, #E3A857 50%, #7B3F00 100%);
-            --text-honey: #C68E17; 
-            --soft-gold: rgba(198, 142, 23, 0.1);
+            --deep-mocha: #1e4b7a; /* تم التغيير للأزرق الملكي */
+            --blue-linear: linear-gradient(135deg, #1e4b7a 0%, #4a90e2 50%, #16365a 100%); /* تدرج أزرق ملكي */
+            --text-blue: #1e4b7a; 
+            --soft-blue: rgba(30, 75, 122, 0.1);
         }
 
         body {
@@ -24,19 +24,17 @@
             padding-bottom: 50px;
         }
 
-        /* تم حذف تنسيق زر الرجوع لأنه لم يعد مطلوباً */
-
         /* --- القائمة العلوية الموحدة --- */
         .nav-links { 
             position: relative; 
-            top: 40px; /* زيادة المسافة لتكون أوضح وتحت الكلمة الرئيسية */
+            top: 40px; 
             display: flex; 
             gap: 15px; 
             z-index: 1000; 
             flex-wrap: wrap; 
             justify-content: center; 
             width: 100%; 
-            margin-bottom: 60px; /* زيادة الهامش السفلي للموازنة */
+            margin-bottom: 60px; 
             padding: 0;
             list-style: none;
         }
@@ -60,7 +58,7 @@
 
         .nav-links li a:hover, .dropdown:hover .dropdown-trigger, .active { 
             opacity: 1; 
-            color: var(--text-honey); 
+            color: var(--text-blue); 
         }
 
         .dropdown-content {
@@ -71,7 +69,7 @@
             background-color: white; 
             min-width: 130px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
-            border: 1px solid var(--soft-gold);
+            border: 1px solid var(--soft-blue);
             border-radius: 10px;
             z-index: 1001;
             padding: 8px 0;
@@ -90,8 +88,8 @@
         }
 
         .dropdown-content a:hover {
-            background-color: var(--soft-gold);
-            color: var(--text-honey) !important;
+            background-color: var(--soft-blue);
+            color: var(--text-blue) !important;
         }
 
         .dropdown:hover .dropdown-content { display: block; }
@@ -112,19 +110,19 @@
             background: white; 
             border-radius: 20px; 
             padding: 12px; 
-            border: 1px solid var(--soft-gold); 
+            border: 1px solid var(--soft-blue); 
             text-align: center; 
-            box-shadow: 0 8px 20px rgba(75, 54, 33, 0.03); 
+            box-shadow: 0 8px 20px rgba(30, 75, 122, 0.03); 
             transition: 0.3s ease;
         }
-        .product-card:hover { transform: translateY(-5px); border-color: var(--text-honey); }
+        .product-card:hover { transform: translateY(-5px); border-color: var(--text-blue); }
 
         .product-img { width: 100%; height: 280px; border-radius: 15px; overflow: hidden; margin-bottom: 15px; }
         .product-img img { width: 100%; height: 100%; object-fit: cover; }
 
         .product-title { font-size: 0.95rem; font-weight: bold; margin: 10px 0; color: var(--deep-mocha); }
         
-        .buy-btn { display: block; background: var(--caramel-linear); color: white; padding: 12px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 0.8rem; box-shadow: 0 4px 12px rgba(198,142,23,0.2); }
+        .buy-btn { display: block; background: var(--blue-linear); color: white; padding: 12px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 0.8rem; box-shadow: 0 4px 12px rgba(30, 75, 122, 0.2); }
 
         .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 10rem; font-weight: 900; color: var(--deep-mocha); opacity: 0.02; z-index: 0; pointer-events: none; }
 
@@ -134,7 +132,6 @@
     </style>
 </head>
 <body>
-    <!-- تم حذف زر الرجوع من هنا -->
     <div class="watermark">MAKEUP</div>
     
     <ul class="nav-links">
@@ -147,7 +144,7 @@
             </div>
         </li>
         <li class="dropdown">
-            <button class="dropdown-trigger" style="color: var(--text-honey); opacity: 1;">مختارات جاز ▾</button>
+            <button class="dropdown-trigger" style="color: var(--text-blue); opacity: 1;">مختارات جاز ▾</button>
             <div class="dropdown-content">
                 <a href="perfumes.html">عطور</a>
                 <a href="skincare.html">عناية</a>
@@ -158,8 +155,8 @@
     </ul>
 
     <div class="header-title">
-        <h1 style="background: var(--caramel-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2rem; margin: 0;">مكياج</h1>
-        <p style="font-weight: bold; opacity: 0.8; font-size: 0.9rem;">أبرز القطع التي أستخدمها ✨</p>
+        <h1 style="background: var(--blue-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2rem; margin: 0;">مكياج</h1>
+        <p style="font-weight: bold; opacity: 0.8; font-size: 0.9rem; color: var(--text-blue);">أبرز القطع التي أستخدمها ✨</p>
     </div>
 
     <div class="product-container">
