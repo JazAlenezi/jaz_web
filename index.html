@@ -36,15 +36,50 @@
             box-sizing: border-box;
         }
 
-        /* القائمة العلوية */
+        /* القائمة العلوية والتنسيق المنسدل */
         .nav-links { 
             display: flex; gap: 12px; 
             z-index: 1000; flex-wrap: wrap; justify-content: center; 
             width: 100%; padding: 0; list-style: none; margin: 0;
         }
+        .nav-links li { position: relative; } /* ضروري لتحديد موقع القائمة المنسدلة */
+
         .nav-links li a { 
             color: var(--deep-mocha); text-decoration: none; opacity: 0.7; 
             transition: 0.3s; font-weight: bold; font-size: 0.85rem; padding: 5px 8px;
+        }
+
+        /* تنسيق القائمة المنسدلة المخفية */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            min-width: 120px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 1001;
+            padding: 10px 0;
+            border: 1px solid var(--soft-gold);
+        }
+
+        .dropdown-content a {
+            color: var(--deep-mocha) !important;
+            padding: 8px 16px;
+            display: block;
+            font-size: 0.8rem;
+            opacity: 1 !important;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--soft-gold);
+            color: var(--text-honey) !important;
+        }
+
+        /* إظهار القائمة عند تمرير الماوس على كلمة أعمالي */
+        .nav-links li:hover .dropdown-content {
+            display: block;
         }
 
         /* الإطار الذهبي المصغر */
@@ -74,39 +109,35 @@
             align-items: center;
         }
 
-        /* زر من القلب في المكان الجديد (الرسمة الصفراء) */
-  /* زر من القلب التفاعلي */
-   .side-btn {
-    position: fixed; /* يبقى ثابت في الشاشة أثناء النزول والصعود */
-    left: 20px;     
-    top: 55%;       
-    background: var(--side-box-bg);
-    color: white;
-    padding: 8px 15px; 
-    border-radius: 12px;
-    text-decoration: none;
-    z-index: 1000; 
-    border: 1px solid var(--text-honey);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    /* إضافة حركة تفاعلية خفيفة */
-    animation: floatingHeart 3s ease-in-out infinite;
-    transition: transform 0.3s ease;
-}
+        /* زر من القلب التفاعلي */
+        .side-btn {
+            position: fixed; 
+            left: 20px;     
+            top: 55%;       
+            background: var(--side-box-bg);
+            color: white;
+            padding: 8px 15px; 
+            border-radius: 12px;
+            text-decoration: none;
+            z-index: 1000; 
+            border: 1px solid var(--text-honey);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            animation: floatingHeart 3s ease-in-out infinite;
+            transition: transform 0.3s ease;
+        }
 
-/* حركة التفاعل (الطفو) لجعل الزر يبدو حياً */
-@keyframes floatingHeart {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
+        @keyframes floatingHeart {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
 
-/* تكبير بسيط عند اللمس أو مرور الماوس */
-.side-btn:hover {
-    transform: scale(1.1);
-    border-color: #white;
-}
+        .side-btn:hover {
+            transform: scale(1.1);
+        }
+
         /* اسم جاز المصغر */
         h1 { 
             background: var(--caramel-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
@@ -159,6 +190,11 @@
         <li><a href="index.html" style="color: var(--text-honey);">الرئيسية</a></li>
         <li style="position: relative;">
             <a href="#" style="opacity: 1;">أعمالي ▾</a>
+            <!-- التعديل هنا: إضافة محتوى القائمة المنسدلة -->
+            <div class="dropdown-content">
+                <a href="drama.html">الدراما</a>
+                <a href="theater.html">المسرح</a>
+            </div>
         </li>
         <li><a href="BOUTIQAAT.html">مختارات جاز</a></li>
         <li><a href="business.html">تواصل</a></li>
