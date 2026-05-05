@@ -7,7 +7,6 @@
     <link rel="icon" type="image/png" href="jaz1.jpeg">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     
-    <!-- مكتبة القصاصات الذهبية -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     
     <style>
@@ -25,53 +24,45 @@
             background-color: var(--main-bg); 
             color: var(--deep-mocha); 
             margin: 0;
-            display: flex; flex-direction: column; align-items: center;
-            min-height: 100vh; overflow-x: hidden;
-            position: relative; padding-bottom: 20px;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+            justify-content: space-between; /* هذا اللي يوزع العناصر لتصل للخط الأسود */
+            height: 100vh; /* طول الشاشة بالتمام */
+            overflow: hidden; /* يمنع السكرول تماماً */
+            position: relative; 
+            padding: 20px 0; /* مسافة من فوق وتحت */
+            box-sizing: border-box;
         }
 
         /* القائمة العلوية */
         .nav-links { 
-            position: relative; top: 10px; display: flex; gap: 10px; 
+            display: flex; gap: 15px; 
             z-index: 1000; flex-wrap: wrap; justify-content: center; 
-            width: 100%; margin-bottom: 15px; padding: 0; list-style: none; 
+            width: 100%; padding: 0; list-style: none; margin: 0;
         }
         .nav-links li a { 
             color: var(--deep-mocha); text-decoration: none; opacity: 0.7; 
-            transition: 0.3s; font-weight: bold; font-size: 0.8rem; padding: 5px 8px;
+            transition: 0.3s; font-weight: bold; font-size: 0.9rem; padding: 5px 10px;
         }
-        .nav-links li a:hover { opacity: 1; color: var(--text-honey); }
 
-        .dropdown { position: relative; }
         .dropdown-content {
             display: none; position: absolute; top: 100%; right: 0;
             background-color: white; min-width: 130px; border-radius: 10px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid var(--soft-gold);
             z-index: 1001; padding: 8px 0;
         }
-        .dropdown-content li a {
-            color: var(--deep-mocha) !important; padding: 10px 15px; text-decoration: none;
-            display: block; text-align: right; font-size: 0.75rem; font-weight: bold;
-        }
         .dropdown:hover .dropdown-content { display: block; }
 
-        /* الصورة والأنيميشن - تعديل الإطار الذهبي ليكون متساوياً وتكبير الصورة */
+        /* الصورة */
         .hero-container { 
-            background: white; border: 1px solid var(--text-honey); 
-            padding: 8px; /* مسافة متساوية من كل الجهات */
-            border-radius: 10px; animation: heartbeat 3s ease-in-out infinite; z-index: 10;
-            margin-top: 5px;
-            display: flex; align-items: center; justify-content: center;
+            background: white; border: 1px solid var(--text-honey); padding: 8px; 
+            border-radius: 12px; animation: heartbeat 3s ease-in-out infinite; z-index: 10;
         }
         .profile-img { 
-            width: 100%; 
-            max-width: 320px; /* تكبير العرض ليعطي فخامة */
-            height: auto; 
-            max-height: 42vh; /* زيادة الارتفاع المسموح لتبدو الصورة أكبر */
-            object-fit: cover; 
-            border-radius: 4px; 
-            display: block; 
-            margin: 0; /* إلغاء أي هوامش تلقائية قد تسبب عدم التساوي */
+            width: 80vw; max-width: 330px; 
+            height: auto; max-height: 42vh; 
+            object-fit: cover; border-radius: 6px; display: block;
         }
 
         @keyframes heartbeat {
@@ -79,23 +70,44 @@
             50% { transform: scale(1.02); }
         }
 
+        /* الاسم والوصف */
+        .title-section { text-align: center; }
+        h1 { 
+            background: var(--caramel-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+            font-weight: 900; font-size: 2.8rem; margin: 5px 0; 
+        }
+        #statusMsg { font-weight: bold; opacity: 0.8; font-size: 1rem; margin: 0; }
+
         /* العداد */
-        .countdown-container { display: flex; gap: 8px; direction: ltr; margin: 10px 0; z-index: 10; }
+        .countdown-container { display: flex; gap: 10px; direction: ltr; z-index: 10; }
         .time-block { 
             display: flex; flex-direction: column; align-items: center; 
-            border: 1px solid var(--soft-gold); padding: 8px; width: 55px; 
-            background: white; border-radius: 8px; 
+            border: 1px solid var(--soft-gold); padding: 10px; width: 60px; 
+            background: white; border-radius: 10px; 
         }
-        .time-number { font-size: 1.4rem; font-weight: bold; color: var(--deep-mocha); }
-        .time-label { font-size: 0.6rem; color: var(--text-honey); }
+        .time-number { font-size: 1.6rem; font-weight: bold; color: var(--deep-mocha); }
+        .time-label { font-size: 0.7rem; color: var(--text-honey); }
 
-        /* الأزرار والنوافذ */
-        .message-trigger, .modal-btn { 
+        /* الزر السفلي */
+        .message-trigger { 
             background: var(--caramel-linear); border: none; color: white; 
-            padding: 10px 25px; border-radius: 50px; cursor: pointer; 
+            padding: 14px 40px; border-radius: 50px; cursor: pointer; 
             font-weight: bold; font-family: 'Cairo'; transition: 0.3s;
-            margin-bottom: 10px;
+            font-size: 1.1rem; box-shadow: 0 4px 15px rgba(198, 142, 23, 0.3);
         }
+
+        /* الفوتر */
+        footer { padding: 10px; font-size: 0.7rem; opacity: 0.6; z-index: 10; text-align: center; width: 100%; }
+
+        /* الزر الجانبي */
+        .side-btn {
+            position: fixed; left: 15px; bottom: 120px; 
+            background: var(--side-box-bg); color: white; padding: 10px 18px; 
+            border-radius: 15px; text-decoration: none; z-index: 1000; 
+            border: 1px solid var(--text-honey); display: flex; align-items: center; gap: 8px;
+        }
+
+        /* النافذة المنبثقة */
         .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(75, 54, 33, 0.4); z-index: 2000; backdrop-filter: blur(8px); }
         
         #birthday-overlay {
@@ -103,19 +115,6 @@
             background: rgba(43, 31, 19, 0.98); backdrop-filter: blur(12px);
             z-index: 9999; display: none; flex-direction: column; 
             align-items: center; justify-content: center; color: white; text-align: center;
-        }
-
-        footer { margin-top: auto; padding: 15px; font-size: 0.65rem; opacity: 0.6; z-index: 10; text-align: center; }
-
-        /* تعديلات الجوال لضمان ظهور كل شيء في الواجهة */
-        @media (max-width: 600px) {
-            h1 { font-size: 1.9rem !important; margin: 8px 0 !important; }
-            .nav-links { margin-bottom: 10px; top: 5px; }
-            #statusMsg { font-size: 0.75rem; margin: 5px 0; }
-            .profile-img { max-height: 40vh; }
-            .countdown-container { margin: 8px 0; }
-            .time-block { padding: 6px; width: 52px; }
-            .time-number { font-size: 1.3rem; }
         }
     </style>
 </head>
@@ -125,12 +124,12 @@
         <div style="font-size: 3rem; margin-bottom: 20px;">✨</div>
         <h2 style="color: var(--text-honey);">لحظة خاصة تنتظرك..</h2>
         <p>بمناسبة ميلاد جاز، ادخلي لتكتمل الحكاية</p>
-        <button class="modal-btn" onclick="startCelebration()">دخول</button>
+        <button class="message-trigger" onclick="startCelebration()" style="margin-top: 20px;">دخول</button>
     </div>
 
     <ul class="nav-links">
         <li><a href="index.html" style="color: var(--text-honey);">الرئيسية</a></li>
-        <li class="dropdown">
+        <li class="dropdown" style="position: relative;">
             <a href="#">أعمالي ▾</a>
             <ul class="dropdown-content">
                 <li><a href="drama.html">دراما</a></li>
@@ -145,32 +144,32 @@
         <img src="jazbio (1).webp" class="profile-img">
     </div>
 
-    <h1 style="background: var(--caramel-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; font-size: 2.5rem; margin: 10px 0;">Jaz Alenezi</h1>
-    <p id="statusMsg" style="font-weight: bold; opacity: 0.8; margin: 5px 0;">ميلاد جاز | حكاية نجمة تضيء السماء ✨</p>
-
-    <div id="countdownWrapper">
-        <div class="countdown-container">
-            <div class="time-block"><span class="time-number" id="days">00</span><span class="time-label">أيام</span></div>
-            <div class="time-block"><span class="time-number" id="hours">00</span><span class="time-label">ساعات</span></div>
-            <div class="time-block"><span class="time-number" id="minutes">00</span><span class="time-label">دقائق</span></div>
-            <div class="time-block"><span class="time-number" id="seconds">00</span><span class="time-label">ثواني</span></div>
-        </div>
+    <div class="title-section">
+        <h1>Jaz Alenezi</h1>
+        <p id="statusMsg">ميلاد جاز | حكاية نجمة تضيء السماء ✨</p>
     </div>
 
-    <a href="fans.html" style="position: fixed; left: 10px; bottom: 80px; background: var(--side-box-bg); color: white; padding: 8px 12px; border-radius: 12px; text-decoration: none; z-index: 1000; border: 1px solid var(--text-honey); display: flex; align-items: center; gap: 8px;">
-        <span style="color: var(--text-honey);">❤️</span>
-        <span style="font-size: 0.7rem; font-weight: bold;">من القلب</span>
-    </a>
+    <div class="countdown-container">
+        <div class="time-block"><span class="time-number" id="days">00</span><span class="time-label">أيام</span></div>
+        <div class="time-block"><span class="time-number" id="hours">00</span><span class="time-label">ساعات</span></div>
+        <div class="time-block"><span class="time-number" id="minutes">00</span><span class="time-label">دقائق</span></div>
+        <div class="time-block"><span class="time-number" id="seconds">00</span><span class="time-label">ثواني</span></div>
+    </div>
 
     <button class="message-trigger" onclick="openBox()">رسالة خبئت لكِ بحب</button>
 
+    <a href="fans.html" class="side-btn">
+        <span style="color: var(--text-honey);">❤️</span>
+        <span style="font-size: 0.8rem; font-weight: bold;">من القلب</span>
+    </a>
+
     <div id="messageBox" class="overlay">
-        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border: 1px solid var(--text-honey); padding: 30px; width: 85%; max-width: 380px; border-radius: 20px; text-align: center;">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border: 1px solid var(--text-honey); padding: 35px; width: 85%; max-width: 380px; border-radius: 20px; text-align: center;">
             <span onclick="closeBox()" style="position: absolute; top: 15px; right: 20px; font-size: 28px; color: var(--text-honey); cursor: pointer;">&times;</span>
-            <h2 style="color: var(--text-honey); margin-bottom: 10px;">إلى جاز.. ✨</h2>
-            <div style="line-height: 1.6; color: var(--deep-mocha); font-size: 1rem;">
+            <h2 style="color: var(--text-honey); margin-bottom: 15px;">إلى جاز.. ✨</h2>
+            <div style="line-height: 1.8; color: var(--deep-mocha); font-size: 1.05rem;">
                 <p>إلى النجمة التي أضاءت <br><strong>خشبة المسرح والشاشة..</strong> <br>اليوم نضيء لكِ قلوبنا حباً وتقديراً.</p>
-                <hr style="border: 0; border-top: 1px solid var(--soft-gold); margin: 10px auto; width: 50%;">
+                <hr style="border: 0; border-top: 1px solid var(--soft-gold); margin: 15px auto; width: 50%;">
                 <p style="font-weight: bold; background: var(--caramel-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">ميلادكِ عيدٌ للجمال، <br>وحكايةُ بطلتها أنتِ.. <br>دمتِ بخير يا جاز</p>
             </div>
         </div>
