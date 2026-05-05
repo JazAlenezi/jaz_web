@@ -7,6 +7,7 @@
     <link rel="icon" type="image/png" href="jaz1.jpeg">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     
+    <!-- مكتبة القصاصات الذهبية - تم التأكيد على وجودها -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     
     <style>
@@ -27,87 +28,75 @@
             display: flex; 
             flex-direction: column; 
             align-items: center;
-            justify-content: space-between; /* هذا اللي يوزع العناصر لتصل للخط الأسود */
-            height: 100vh; /* طول الشاشة بالتمام */
-            overflow: hidden; /* يمنع السكرول تماماً */
+            justify-content: space-between; /* لملء الشاشة حتى الخط الأسود */
+            height: 100vh; 
+            overflow: hidden; 
             position: relative; 
-            padding: 20px 0; /* مسافة من فوق وتحت */
+            padding: 15px 0; 
             box-sizing: border-box;
         }
 
         /* القائمة العلوية */
         .nav-links { 
-            display: flex; gap: 15px; 
+            display: flex; gap: 12px; 
             z-index: 1000; flex-wrap: wrap; justify-content: center; 
             width: 100%; padding: 0; list-style: none; margin: 0;
         }
         .nav-links li a { 
             color: var(--deep-mocha); text-decoration: none; opacity: 0.7; 
-            transition: 0.3s; font-weight: bold; font-size: 0.9rem; padding: 5px 10px;
+            transition: 0.3s; font-weight: bold; font-size: 0.85rem; padding: 5px 8px;
         }
 
-        .dropdown-content {
-            display: none; position: absolute; top: 100%; right: 0;
-            background-color: white; min-width: 130px; border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid var(--soft-gold);
-            z-index: 1001; padding: 8px 0;
-        }
-        .dropdown:hover .dropdown-content { display: block; }
-
-        /* الصورة */
+        /* الإطار الذهبي والصورة - نسخة نحيفة ومنسقة */
         .hero-container { 
-            background: white; border: 1px solid var(--text-honey); padding: 8px; 
-            border-radius: 12px; animation: heartbeat 3s ease-in-out infinite; z-index: 10;
+            background: white; border: 1px solid var(--text-honey); padding: 6px; 
+            border-radius: 10px; animation: heartbeat 3s ease-in-out infinite; z-index: 10;
         }
         .profile-img { 
-            width: 80vw; max-width: 330px; 
-            height: auto; max-height: 42vh; 
-            object-fit: cover; border-radius: 6px; display: block;
+            width: 65vw; max-width: 260px; 
+            height: auto; max-height: 45vh; 
+            object-fit: cover; border-radius: 5px; display: block;
         }
 
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+            50% { transform: scale(1.01); }
         }
 
-        /* الاسم والوصف */
+        /* الاسم والوصف - أحجام ناعمة */
         .title-section { text-align: center; }
         h1 { 
             background: var(--caramel-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
-            font-weight: 900; font-size: 2.8rem; margin: 5px 0; 
+            font-weight: 900; font-size: 2.2rem; margin: 5px 0; 
         }
-        #statusMsg { font-weight: bold; opacity: 0.8; font-size: 1rem; margin: 0; }
+        #statusMsg { font-weight: bold; opacity: 0.8; font-size: 0.85rem; margin: 0; }
 
         /* العداد */
-        .countdown-container { display: flex; gap: 10px; direction: ltr; z-index: 10; }
+        .countdown-container { display: flex; gap: 8px; direction: ltr; z-index: 10; }
         .time-block { 
             display: flex; flex-direction: column; align-items: center; 
-            border: 1px solid var(--soft-gold); padding: 10px; width: 60px; 
-            background: white; border-radius: 10px; 
+            border: 1px solid var(--soft-gold); padding: 8px; width: 55px; 
+            background: white; border-radius: 8px; 
         }
-        .time-number { font-size: 1.6rem; font-weight: bold; color: var(--deep-mocha); }
-        .time-label { font-size: 0.7rem; color: var(--text-honey); }
+        .time-number { font-size: 1.4rem; font-weight: bold; color: var(--deep-mocha); }
+        .time-label { font-size: 0.65rem; color: var(--text-honey); }
 
-        /* الزر السفلي */
+        /* الأزرار */
         .message-trigger { 
             background: var(--caramel-linear); border: none; color: white; 
-            padding: 14px 40px; border-radius: 50px; cursor: pointer; 
+            padding: 12px 35px; border-radius: 50px; cursor: pointer; 
             font-weight: bold; font-family: 'Cairo'; transition: 0.3s;
-            font-size: 1.1rem; box-shadow: 0 4px 15px rgba(198, 142, 23, 0.3);
+            font-size: 1rem; box-shadow: 0 4px 12px rgba(198, 142, 23, 0.25);
         }
 
-        /* الفوتر */
-        footer { padding: 10px; font-size: 0.7rem; opacity: 0.6; z-index: 10; text-align: center; width: 100%; }
-
-        /* الزر الجانبي */
         .side-btn {
-            position: fixed; left: 15px; bottom: 120px; 
-            background: var(--side-box-bg); color: white; padding: 10px 18px; 
-            border-radius: 15px; text-decoration: none; z-index: 1000; 
-            border: 1px solid var(--text-honey); display: flex; align-items: center; gap: 8px;
+            position: absolute; left: 15px; bottom: 100px; 
+            background: var(--side-box-bg); color: white; padding: 8px 15px; 
+            border-radius: 12px; text-decoration: none; z-index: 1000; 
+            border: 1px solid var(--text-honey); display: flex; align-items: center; gap: 6px;
         }
 
-        /* النافذة المنبثقة */
+        /* النوافذ */
         .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(75, 54, 33, 0.4); z-index: 2000; backdrop-filter: blur(8px); }
         
         #birthday-overlay {
@@ -116,10 +105,13 @@
             z-index: 9999; display: none; flex-direction: column; 
             align-items: center; justify-content: center; color: white; text-align: center;
         }
+
+        footer { padding: 8px; font-size: 0.65rem; opacity: 0.6; z-index: 10; text-align: center; width: 100%; }
     </style>
 </head>
 <body>
 
+    <!-- نافذة الدخول -->
     <div id="birthday-overlay">
         <div style="font-size: 3rem; margin-bottom: 20px;">✨</div>
         <h2 style="color: var(--text-honey);">لحظة خاصة تنتظرك..</h2>
@@ -129,12 +121,8 @@
 
     <ul class="nav-links">
         <li><a href="index.html" style="color: var(--text-honey);">الرئيسية</a></li>
-        <li class="dropdown" style="position: relative;">
-            <a href="#">أعمالي ▾</a>
-            <ul class="dropdown-content">
-                <li><a href="drama.html">دراما</a></li>
-                <li><a href="theater.html">مسرح</a></li>
-            </ul>
+        <li style="position: relative;">
+            <a href="#" style="opacity: 1;">أعمالي ▾</a>
         </li>
         <li><a href="BOUTIQAAT.html">مختارات جاز</a></li>
         <li><a href="business.html">تواصل</a></li>
@@ -160,13 +148,13 @@
 
     <a href="fans.html" class="side-btn">
         <span style="color: var(--text-honey);">❤️</span>
-        <span style="font-size: 0.8rem; font-weight: bold;">من القلب</span>
+        <span style="font-size: 0.75rem; font-weight: bold;">من القلب</span>
     </a>
 
     <div id="messageBox" class="overlay">
-        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border: 1px solid var(--text-honey); padding: 35px; width: 85%; max-width: 380px; border-radius: 20px; text-align: center;">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border: 1px solid var(--text-honey); padding: 30px; width: 85%; max-width: 350px; border-radius: 20px; text-align: center;">
             <span onclick="closeBox()" style="position: absolute; top: 15px; right: 20px; font-size: 28px; color: var(--text-honey); cursor: pointer;">&times;</span>
-            <h2 style="color: var(--text-honey); margin-bottom: 15px;">إلى جاز.. ✨</h2>
+        <h2 style="color: var(--text-honey); margin-bottom: 15px;">إلى جاز.. ✨</h2>
             <div style="line-height: 1.8; color: var(--deep-mocha); font-size: 1.05rem;">
                 <p>إلى النجمة التي أضاءت <br><strong>خشبة المسرح والشاشة..</strong> <br>اليوم نضيء لكِ قلوبنا حباً وتقديراً.</p>
                 <hr style="border: 0; border-top: 1px solid var(--soft-gold); margin: 15px auto; width: 50%;">
@@ -185,6 +173,7 @@
         var showTime = new Date("May 5, 2026 23:00:00").getTime();
         var confettiTimer = null;
 
+        // وظيفة القصاصات الذهبية
         function shootConfetti() {
             var colors = ['#C68E17', '#E3A857', '#7B3F00', '#FFFFFF'];
             confetti({ particleCount: 40, angle: 60, spread: 55, origin: { x: 0, y: 0.6 }, colors: colors });
@@ -227,7 +216,7 @@
                 if (party.paused) {
                     intro.pause();
                     party.play();
-                    shootConfetti();
+                    shootConfetti(); // إطلاق القصاصات
                     if (!confettiTimer) confettiTimer = setInterval(shootConfetti, 3000);
                 }
             } else if (now >= showTime) {
