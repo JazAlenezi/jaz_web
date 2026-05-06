@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAZ | THE STAR</title>
+    <link rel="icon" type="image/png" href="jaz1.jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- مكتبة القصاصات الزرقاء -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    
+    <style>
+        :root {
+            --main-bg: #fdfbf9; 
+            --deep-mocha: #1e4b7a; /* أزرق عميق بدلاً من البني */
+            --blue-linear: linear-gradient(135deg, #1e4b7a 0%, #4a90e2 50%, #16365a 100%);
+            --text-blue: #1e4b7a;
+            --soft-blue: rgba(30, 75, 122, 0.1);
+            --side-box-bg: rgba(0, 0, 0, 0.85); 
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--main-bg); 
+            color: var(--deep-mocha); 
+            margin: 0;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+            justify-content: space-between; 
+            height: 100vh; 
+            overflow: hidden; 
+            position: relative; 
+            padding: 15px 0; 
+            box-sizing: border-box;
+        }
+
+        .nav-links { 
+            display: flex; gap: 12px; 
+            z-index: 1000; flex-wrap: wrap; justify-content: center; 
+            width: 100%; padding: 0; list-style: none; margin: 0;
+        }
+        .nav-links li { position: relative; }
+
+        .nav-links li a { 
+            color: var(--deep-mocha); text-decoration: none; opacity: 0.7; 
+            transition: 0.3s; font-weight: bold; font-size: 0.85rem; padding: 5px 8px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            min-width: 120px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 1001;
+            padding: 10px 0;
+            border: 1px solid var(--soft-blue);
+        }
+
+        .dropdown-content a {
+            color: var(--deep-mocha) !important;
+            padding: 8px 16px;
+            display: block;
+            font-size: 0.8rem;
+            opacity: 1 !important;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--soft-blue);
+            color: var(--text-blue) !important;
+        }
+
+        .nav-links li:hover .dropdown-content {
+            display: block;
+        }
+
+        .hero-container { 
+            background: white; border: 2px solid var(--text-blue); padding: 5px; 
+            border-radius: 8px; animation: heartbeat 3s ease-in-out infinite; z-index: 10;
+        }
+        .profile-img { 
+            width: 60vw; max-width: 240px; 
+            height: auto; max-height: 42vh; 
+            object-fit: cover; border-radius: 4px; display: block;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.01); }
+        }
+
+        .title-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 360px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .side-btn {
+            position: fixed; 
+            left: 20px;     
+            top: 55%;       
+            background: var(--side-box-bg);
+            color: white;
+            padding: 8px 15px; 
+            border-radius: 12px;
+            text-decoration: none;
+            z-index: 1000; 
+            border: 1px solid var(--text-blue);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            animation: floatingHeart 3s ease-in-out infinite;
+            transition: transform 0.3s ease;
+        }
+
+        @keyframes floatingHeart {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 { 
+            background: var(--blue-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+            font-weight: 900; font-size: 2.1rem; margin: 5px 0; 
+        }
+        #statusMsg { font-weight: bold; opacity: 0.8; font-size: 0.8rem; margin: 0; color: var(--text-blue); }
+
+        .countdown-container { display: flex; gap: 8px; direction: ltr; z-index: 10; }
+        .time-block { 
+            display: flex; flex-direction: column; align-items: center; 
+            border: 1px solid var(--soft-blue); padding: 8px; width: 55px; 
+            background: white; border-radius: 8px; 
+        }
+        .time-number { font-size: 1.3rem; font-weight: bold; color: var(--deep-mocha); }
+        .time-label { font-size: 0.6rem; color: var(--text-blue); }
+
+        .message-trigger { 
+            background: var(--blue-linear); border: none; color: white; 
+            padding: 12px 35px; border-radius: 50px; cursor: pointer; 
+            font-weight: bold; font-family: 'Cairo'; transition: 0.3s;
+            font-size: 0.95rem; box-shadow: 0 4px 12px rgba(30, 75, 122, 0.3);
+        }
+
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(30, 75, 122, 0.2); z-index: 2000; backdrop-filter: blur(8px); }
+        
+        #birthday-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 36, 59, 0.98); backdrop-filter: blur(12px);
+            z-index: 9999; display: none; flex-direction: column; 
+            align-items: center; justify-content: center; color: white; text-align: center;
+        }
+
+        footer { padding: 8px; font-size: 0.65rem; opacity: 0.6; z-index: 10; text-align: center; width: 100%; }
+    </style>
+</head>
+<body>
+
+    <div id="birthday-overlay">
+        <div style="font-size: 3rem; margin-bottom: 20px;">💙</div>
+        <h2 style="color: #4a90e2;">لحظة خاصة تنتظرك..</h2>
+        <p>بمناسبة ميلاد جاز، ادخلي لتكتمل الحكاية</p>
+        <button class="message-trigger" onclick="startCelebration()" style="margin-top: 20px;">دخول</button>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="index.html" style="color: var(--text-blue);">الرئيسية</a></li>
+        <li style="position: relative;">
+            <a href="#" style="opacity: 1;">أعمالي ▾</a>
+            <div class="dropdown-content">
+                <a href="drama.html">الدراما</a>
+                <a href="theater.html">المسرح</a>
+            </div>
+        </li>
+        <li><a href="BOUTIQAAT.html">مختارات جاز</a></li>
+        <li><a href="business.html">تواصل</a></li>
+    </ul>
+
+
+    <div class="hero-container">
+        <img src="جاز بايو.webp" class="profile-img">
+    </div>
+    <div class="title-wrapper">
+        <a href="fans.html" class="side-btn">
+            <span style="color: #4a90e2;">❤️</span>
+            <span style="font-size: 0.7rem; font-weight: bold;">من القلب</span>
+        </a>
+        <h1>Jaz Alenezi</h1>
+        <p id="statusMsg">ميلاد جاز | حكاية نجمة تضيء السماء ✨</p>
+    </div>
+
+    <div class="countdown-container">
+        <div class="time-block"><span class="time-number" id="days">00</span><span class="time-label">أيام</span></div>
+        <div class="time-block"><span class="time-number" id="hours">00</span><span class="time-label">ساعات</span></div>
+        <div class="time-block"><span class="time-number" id="minutes">00</span><span class="time-label">دقائق</span></div>
+        <div class="time-block"><span class="time-number" id="seconds">00</span><span class="time-label">ثواني</span></div>
+    </div>
+
+    <button class="message-trigger" onclick="openBox()">رسالة خبئت لكِ بحب</button>
+
+    <div id="messageBox" class="overlay">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border: 1px solid var(--text-blue); padding: 30px; width: 85%; max-width: 350px; border-radius: 20px; text-align: center;">
+            <span onclick="closeBox()" style="position: absolute; top: 15px; right: 20px; font-size: 28px; color: var(--text-blue); cursor: pointer;">&times;</span>
+          <h2 style="color: var(--text-blue); margin-bottom: 15px;">إلى جاز.. ✨</h2>
+            <div style="line-height: 1.8; color: #16365a; font-size: 1.05rem;">
+                <p>إلى النجمة التي أضاءت <br><strong>خشبة المسرح والشاشة..</strong> <br>اليوم نضيء لكِ قلوبنا حباً وتقديراً.</p>
+                
+                <hr style="border: 0; border-top: 1px solid var(--soft-blue); margin: 15px auto; width: 50%;">
+                <p style="font-weight: bold; background: var(--blue-linear); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">ميلادكِ عيدٌ للجمال، <br>وحكايةُ بطلتها أنتِ.. <br>دمتِ بخير يا جاز</p>
+            </div>
+        </div>
+    </div>
+
+    <audio id="introAudio" src="الموسيقى.mp3" preload="auto" loop></audio>
+    <audio id="birthdayAudio" src="غنو لحبيبي.mp3" preload="auto" loop></audio>
+
+    <footer>جميع الحقوق محفوظة لـ JAZ 2026 ©️  <a href="" target="_blank" style="color: var(--text-blue); text-decoration: none; font-weight: bold;"></a></footer>
+
+    <script>
+        var birthdayDate = new Date("May 6, 2026 00:00:00").getTime();
+        var showTime = new Date("May 5, 2026 23:00:00").getTime();
+        var endOfCelebration = birthdayDate + (24 * 60 * 60 * 1000); 
+        var confettiTimer = null;
+
+        function shootConfetti() {
+            var colors = ['#1e4b7a', '#4a90e2', '#ffffff', '#b0c4de'];
+            confetti({ particleCount: 40, angle: 60, spread: 55, origin: { x: 0, y: 0.6 }, colors: colors });
+            confetti({ particleCount: 40, angle: 120, spread: 55, origin: { x: 1, y: 0.6 }, colors: colors });
+        }
+
+        function updateCountdown() {
+            var now = new Date().getTime();
+            var distance = birthdayDate - now;
+            if (distance > 0) {
+                document.getElementById("days").innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24));
+                document.getElementById("hours").innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById("minutes").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById("seconds").innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
+            } else if (now < endOfCelebration) {
+                document.getElementById("statusMsg").innerHTML = "💙 HAPPY BIRTHDAY JAZ 💙";
+                document.querySelectorAll(".time-number").forEach(el => el.innerHTML = "00");
+            }
+        }
+
+        function checkOverlay() {
+            var now = new Date().getTime();
+            if (now >= showTime && now < endOfCelebration && !window.hasStarted) {
+                document.getElementById('birthday-overlay').style.display = 'flex';
+            }
+        }
+
+        function startCelebration() {
+            document.getElementById('birthday-overlay').style.display = 'none';
+            window.hasStarted = true;
+            handleAudioLogic();
+        }
+
+        function handleAudioLogic() {
+            var now = new Date().getTime();
+            var intro = document.getElementById("introAudio");
+            var party = document.getElementById("birthdayAudio");
+
+            if (now >= birthdayDate && now < endOfCelebration) {
+                if (party.paused) {
+                    intro.pause();
+                    party.play();
+                    shootConfetti(); 
+                    if (!confettiTimer) confettiTimer = setInterval(shootConfetti, 3000);
+                }
+            } else if (now >= showTime && now < birthdayDate) {
+                if (intro.paused) intro.play();
+            } else if (now >= endOfCelebration) {
+                intro.pause();
+                party.pause();
+                if (confettiTimer) clearInterval(confettiTimer);
+            }
+        }
+
+        function openBox() { document.getElementById("messageBox").style.display = "block"; }
+        function closeBox() { document.getElementById("messageBox").style.display = "none"; }
+
+        setInterval(() => {
+            updateCountdown();
+            if (window.hasStarted) handleAudioLogic();
+        }, 1000);
+        window.onload = checkOverlay;
+    </script>
+</body>
+</html>
